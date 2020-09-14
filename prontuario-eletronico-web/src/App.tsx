@@ -5,10 +5,16 @@ import Patients from './components/Patients/Patients';
 
 const patientsData = [
   {
-    name: 'Pikachu',
-    gender: 'no gender',
-    birthDate: 'unknown birthdate',
-    telephone: 'no telephone'
+    name: 'Person A',
+    gender: 'Male',
+    birthDate: '01/01/1970',
+    telephone: '(21) XXXXX-XXXX'
+  },
+  {
+    name: 'Person B',
+    gender: 'Female',
+    birthDate: '01/01/1960',
+    telephone: '(11) XXXXX-XXXX'
   }
 ];
 
@@ -17,12 +23,12 @@ function App() {
     <main className='App'>
       <header className='App-header'>
         <h1 className='App-header-title'>PRONTOMED</h1>
-        <h2>Pacientes</h2>
-        <h2>Agendamentos</h2>
+        <nav className='App-header-navigation'>
+          <a href='#'>Pacientes</a>
+          <a href='#'>Agendamentos</a>
+        </nav>
       </header>
-      <div>
-        <Patients patientsListData={patientsData} />
-      </div>
+      <Patients patientsListData={patientsData} />
     </main>
   );
 }

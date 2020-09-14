@@ -4,7 +4,7 @@ import './PatientsList.css';
 
 const PatientsList = ({ patientsList }) => {
   return (
-    <table>
+    <table className='Patients-list-table'>
       <thead>
         <tr>
           <th>Nome</th>

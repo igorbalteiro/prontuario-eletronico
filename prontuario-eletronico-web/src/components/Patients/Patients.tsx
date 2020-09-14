@@ -14,8 +14,8 @@ const Patients = ({ patientsListData }) => {
   return (
     <section className='Patients'>
       <div className='Patients-header'>
-        <h3>Pacientes</h3>
-        <button>Novo Paciente</button>
+        <h3 className='Patients-header-title'>Pacientes</h3>
+        <button className='Patients-header-button'>Novo Paciente</button>
       </div>
       {displayPatientsList()}
     </section>
