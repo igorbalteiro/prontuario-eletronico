@@ -19,3 +19,13 @@ test('creates an action to set patient details data', () => {
 
   expect(actions.patientDetailsData(patientDetailsData)).toEqual(expectedAction);
 });
+
+test('creates an action to displays schedules', () => {
+  const displaySchedules = true;
+  const expectedAction = {
+    type: actions.DISPLAY_SCHEDULES,
+    displaySchedules
+  };
+
+  expect(actions.displaySchedules(displaySchedules)).toEqual(expectedAction);
+});

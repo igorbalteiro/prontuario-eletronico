@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import {
   DISPLAY_PATIENT_DETAILS,
-  PATIENT_DETAILS_DATA
+  PATIENT_DETAILS_DATA,
+  DISPLAY_SCHEDULES
 } from '../actions/index';
 
 export const initialState = {
   displayPatientDetails: false,
-  patientDetailsData: {}
+  patientDetailsData: {},
+  displaySchedules: false
 };
 
 const displayPatientDetails = (state = false, action) => {
@@ -27,9 +29,19 @@ const patientDetailsData = (state = {}, action) => {
   }
 };
 
+const displaySchedules = (state = false, action) => {
+  switch (action.type) {
+    case DISPLAY_SCHEDULES:
+      return action.displaySchedules
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   displayPatientDetails,
-  patientDetailsData
+  patientDetailsData,
+  displaySchedules
 });
 
 export default rootReducer;

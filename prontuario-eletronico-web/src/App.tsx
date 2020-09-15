@@ -4,10 +4,23 @@ import './App.css';
 
 import Patients from './components/Patients/Patients';
 import Patient from './components/Patient/Patient';
+import Schedule from './components/Schedule/Schedule';
 
 import {
-  displayPatientDetails as  displayPatientDetailsAction
+  displayPatientDetails as  displayPatientDetailsAction,
+  displaySchedules as displaySchedulesAction
 } from './actions/index';
+
+const schedulesData = [
+  {
+    patientName: 'Person A',
+    date: '01/01/2020'
+  },
+  {
+    patientName: 'Person B',
+    date: '10/02/2020'
+  }
+];
 
 const patientsData = [
   {
@@ -53,11 +66,23 @@ function App() {
 
   const displayPatientDetails = useSelector((state) => state.displayPatientDetails);
   const patientDetailsData = useSelector((state) => state.patientDetailsData);
+  const displaySchedules = useSelector((state) => state.displaySchedules);
 
   const renderMainContent = () => {
     if (displayPatientDetails) return <Patient patientDetails={patientDetailsData} />
+    if (displaySchedules) return <Schedule schedulesListData={schedulesData} />
 
     return <Patients patientsListData={patientsData} />
+  };
+
+  const displayPatientContent = () => {
+    dispatch(displayPatientDetailsAction(false));
+    dispatch(displaySchedulesAction(false));
+  };
+
+  const displayScheduleContent = () => {
+    dispatch(displayPatientDetailsAction(false));
+    dispatch(displaySchedulesAction(true));
   };
 
   return (
@@ -65,8 +90,8 @@ function App() {
       <header className='App-header'>
         <h1 className='App-header-title'>PRONTOMED</h1>
         <nav className='App-header-navigation'>
-          <a href='#' onClick={ () => dispatch(displayPatientDetailsAction(false)) }>Pacientes</a>
-          <a href='#'>Agendamentos</a>
+          <a href='#' onClick={ () => displayPatientContent() }>Pacientes</a>
+          <a href='#' onClick={ () => displayScheduleContent() }>Agendamentos</a>
         </nav>
       </header>
       {renderMainContent()}

@@ -42,6 +42,16 @@ test('renders patients component', () => {
   expect(patientsComponent).toBeInTheDocument();
 });
 
+test('renders schedules component', () => {
+  const { getByText } = render(<App />, { store });
+
+  fireEvent.click(getByText(/agendamentos/i));
+
+  const schedulesComponent = getByText(/novo agendamento/i);
+
+  expect(schedulesComponent).toBeInTheDocument();
+});
+
 test('renders patient details component when click on patient', () => {
   const { getByText } = render(<App />, { store });
 
@@ -59,6 +69,17 @@ test('renders patients component after clicking in navbar', () => {
   fireEvent.click(getByText(/pacientes/i));
 
   const patientsComponent = getByText(/novo paciente/i);
+
+  expect(patientsComponent).toBeInTheDocument();
+});
+
+test('renders schedule component after entering in patient details', () => {
+  const { getByText } = render(<App />, { store });
+
+  fireEvent.click(getByText(/person a/i));
+  fireEvent.click(getByText(/agendamentos/i));
+
+  const patientsComponent = getByText(/novo agendamento/i);
 
   expect(patientsComponent).toBeInTheDocument();
 });

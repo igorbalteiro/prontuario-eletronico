@@ -3,7 +3,8 @@ import * as actions from '../actions/index';
 
 const initialState = {
   displayPatientDetails: false,
-  patientDetailsData: {}
+  patientDetailsData: {},
+  displaySchedules: false
 };
 
 test('returns the initial state', () => {
@@ -25,5 +26,14 @@ test('sets patient details data', () => {
   expect(rootReducer({}, { type: actions.PATIENT_DETAILS_DATA, patientDetailsData })).toEqual({
     ...initialState,
     patientDetailsData: patientDetailsData
+  });
+});
+
+test('displays schedules', () => {
+  const displaySchedules = true;
+
+  expect(rootReducer({}, { type: actions.DISPLAY_SCHEDULES, displaySchedules })).toEqual({
+    ...initialState,
+    displaySchedules: displaySchedules
   });
 });
