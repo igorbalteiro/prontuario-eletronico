@@ -1,18 +1,37 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { createStore } from 'redux';
+import { render } from '../../test-utils';
 import PatientsList from './PatientsList';
+
+const store = createStore(() => ({
+  displayPatientDetails: false,
+  patientDetailsData: {'name': 'Pikachu'}
+}));
+
 
 const patientsData = [
   {
     name: 'Pikachu',
     gender: 'no gender',
     birthDate: 'unknown birthdate',
-    telephone: 'no telephone'
+    telephone: 'no telephone',
+    height: 1.68,
+    weight: 90,
+    annotations: [
+      {
+        date: '01/01/2020',
+        description: 'Some description'
+      },
+      {
+        date: '11/01/2020',
+        description: 'Other description'
+      }
+    ]
   }
 ];
 
 test('renders patients header table', () => {
-  const { getByText } = render(<PatientsList patientsList={patientsData} />);
+  const { getByText } = render(<PatientsList patientsList={patientsData} />, { store });
 
   const nameHeader = getByText(/nome/i);
   const birthDateHeader = getByText(/data de nascimento/i);

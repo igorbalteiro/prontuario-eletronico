@@ -1,0 +1,23 @@
+.Annotations-list-table {
+  width: 100%;
+  margin: 5% 0;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background: #bdc3c7;
+}
+
+tr:nth-child(odd) {
+  background: #FFF;
+}
+
+.Annotations-list-table th {
+  font-weight: bold;
+  background-color: #34495e;
+  color: white;
+}
+
+tr {
+  cursor: pointer;
+}

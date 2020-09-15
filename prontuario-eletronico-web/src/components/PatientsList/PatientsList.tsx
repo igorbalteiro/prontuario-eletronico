@@ -1,8 +1,20 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './PatientsList.css';
+import {
+  displayPatientDetails as  displayPatientDetailsAction,
+  patientDetailsData
+} from '../../actions/index';
 
 const PatientsList = ({ patientsList }) => {
+  const dispatch = useDispatch();
+
+  const displayPatientDetails = (patientData) => {
+    dispatch(patientDetailsData(patientData));
+    dispatch(displayPatientDetailsAction(true));
+  };
+
   return (
     <table className='Patients-list-table'>
       <thead>
@@ -15,7 +27,7 @@ const PatientsList = ({ patientsList }) => {
       </thead>
       <tbody>
         {patientsList.map((patient: any, index: number) => (
-          <tr key={index}>
+          <tr key={index} onClick={() => displayPatientDetails(patient)}>
             <td>{patient.name}</td>
             <td>{patient.birthDate}</td>
             <td>{patient.gender}</td>

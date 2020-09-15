@@ -26,3 +26,7 @@ tr:nth-child(odd) {
   background-color: #34495e;
   color: white;
 }
+
+tr {
+  cursor: pointer;
+}

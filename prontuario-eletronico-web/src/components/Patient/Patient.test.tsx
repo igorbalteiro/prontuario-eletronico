@@ -45,6 +45,22 @@ test('renders remove profile button', () => {
   expect(removeProfileButton).toBeInTheDocument();
 });
 
+test('renders patient details data', () => {
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />);
+
+  const birthDateText = getByText(/data de nascimento/i);
+  const heightText = getByText(/altura/i);
+  const genderText = getByText(/sexo/i);
+  const weightText = getByText(/peso/i);
+  const telephoneText = getByText(/telefone/i);
+
+  expect(birthDateText).toBeInTheDocument();
+  expect(heightText).toBeInTheDocument();
+  expect(genderText).toBeInTheDocument();
+  expect(weightText).toBeInTheDocument();
+  expect(telephoneText).toBeInTheDocument();
+});
+
 test('renders insert annotation button', () => {
   const { getByText } = render(<Patient patientDetails={patientsDetailsData} />);
 

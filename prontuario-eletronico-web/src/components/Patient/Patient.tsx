@@ -20,6 +20,13 @@ const Patient = ({ patientDetails }) => {
           <button>Excluir cadastro</button>
         </div>
       </div>
+      <article className='Patient-data'>
+        <p>Data de nascimento: {patientDetails.birthDate}</p>
+        <p>Altura: {patientDetails.height}</p>
+        <p>Sexo: {patientDetails.gender}</p>
+        <p>Peso: {patientDetails.weight} kg</p>
+        <p>Telefone: {patientDetails.telephone}</p>
+      </article>
       <button className='Patient-insert-annotation'>Inserir anotações</button>
       {displayAnnotationsList()}
     </section>
