@@ -5,11 +5,14 @@ import './Schedule.css';
 
 import SchedulesList from '../SchedulesList/SchedulesList';
 import ScheduleModal from '../ScheduleModal/ScheduleModal';
+import UpdateScheduleModal from '../ScheduleModal/UpdateSchedule/UpdateSchedule';
 import { newSchedule as newScheduleAction } from '../../actions/index';
 
 const Schedule = ({ schedulesListData }) => {
   const dispatch = useDispatch();
   const newSchedule = useSelector((state) => state.newSchedule);
+  const updateSchedule = useSelector((state) => state.updateSchedule);
+  const scheduleDate = useSelector((state) => state.scheduleDate);
 
   const displaySchedulesList = () => {
     return schedulesListData.length > 0
@@ -17,9 +20,15 @@ const Schedule = ({ schedulesListData }) => {
       : null
   }
 
-  const renderConfirmationModal = () => {
+  const renderNewScheduleModal = () => {
     return (newSchedule)
       ? <ScheduleModal patientsList={schedulesListData} />
+      : null;
+  };
+
+  const renderUpdateScheduleModal = () => {
+    return (updateSchedule)
+      ? <UpdateScheduleModal patientsList={schedulesListData} scheduleDate={scheduleDate} />
       : null;
   };
 
@@ -30,7 +39,8 @@ const Schedule = ({ schedulesListData }) => {
         <button className='Schedule-header-button' onClick={() => dispatch(newScheduleAction(true))}>Novo Agendamento</button>
       </div>
       {displaySchedulesList()}
-      {renderConfirmationModal()}
+      {renderNewScheduleModal()}
+      {renderUpdateScheduleModal()}
     </section>
   );
 }

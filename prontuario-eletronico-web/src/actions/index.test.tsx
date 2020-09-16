@@ -30,7 +30,7 @@ test('creates an action to displays schedules', () => {
   expect(actions.displaySchedules(displaySchedules)).toEqual(expectedAction);
 });
 
-test('creates an action to create a new schedules', () => {
+test('creates an action to create a new schedule', () => {
   const newSchedule = true;
   const expectedAction = {
     type: actions.NEW_SCHEDULE,
@@ -38,4 +38,24 @@ test('creates an action to create a new schedules', () => {
   };
 
   expect(actions.newSchedule(newSchedule)).toEqual(expectedAction);
+});
+
+test('creates an action to update a schedule', () => {
+  const updateSchedule = true;
+  const expectedAction = {
+    type: actions.UPDATE_SCHEDULE,
+    updateSchedule
+  };
+
+  expect(actions.updateSchedule(updateSchedule)).toEqual(expectedAction);
+});
+
+test('creates an action to set a schedule date', () => {
+  const scheduleDate = '01/01/1970';
+  const expectedAction = {
+    type: actions.SET_SCHEDULE_DATE,
+    scheduleDate
+  };
+
+  expect(actions.scheduleDate(scheduleDate)).toEqual(expectedAction);
 });

@@ -5,7 +5,9 @@ const initialState = {
   displayPatientDetails: false,
   patientDetailsData: {},
   displaySchedules: false,
-  newSchedule: false
+  newSchedule: false,
+  updateSchedule: false,
+  scheduleDate: ''
 };
 
 test('returns the initial state', () => {
@@ -45,5 +47,23 @@ test('displays new schedule modal', () => {
   expect(rootReducer({}, { type: actions.NEW_SCHEDULE, newSchedule })).toEqual({
     ...initialState,
     newSchedule: newSchedule
+  });
+});
+
+test('displays update schedule modal', () => {
+  const updateSchedule = true;
+
+  expect(rootReducer({}, { type: actions.UPDATE_SCHEDULE, updateSchedule })).toEqual({
+    ...initialState,
+    updateSchedule: updateSchedule
+  });
+});
+
+test('sets schedule date', () => {
+  const scheduleDate = '01/01/1970';
+
+  expect(rootReducer({}, { type: actions.SET_SCHEDULE_DATE, scheduleDate })).toEqual({
+    ...initialState,
+    scheduleDate: scheduleDate
   });
 });

@@ -3,7 +3,9 @@ import {
   DISPLAY_PATIENT_DETAILS,
   PATIENT_DETAILS_DATA,
   DISPLAY_SCHEDULES,
-  NEW_SCHEDULE
+  NEW_SCHEDULE,
+  UPDATE_SCHEDULE,
+  SET_SCHEDULE_DATE
 } from '../actions/index';
 
 export const initialState = {
@@ -48,11 +50,31 @@ const newSchedule = (state = false, action) => {
   }
 };
 
+const updateSchedule = (state = false, action) => {
+  switch (action.type) {
+    case UPDATE_SCHEDULE:
+      return action.updateSchedule
+    default:
+      return state
+  }
+};
+
+const scheduleDate = (state = '', action) => {
+  switch (action.type) {
+    case SET_SCHEDULE_DATE:
+      return action.scheduleDate
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   displayPatientDetails,
   patientDetailsData,
   displaySchedules,
-  newSchedule
+  newSchedule,
+  updateSchedule,
+  scheduleDate
 });
 
 export default rootReducer;

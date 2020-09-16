@@ -8,7 +8,9 @@ const store = createStore(() => ({
   displayPatientDetails: false,
   patientDetailsData: {'name': 'Pikachu'},
   displaySchedules: false,
-  newSchedule: false
+  newSchedule: false,
+  updateSchedule: false,
+  scheduleDate: ''
 }));
 
 const scheduleData = [
@@ -57,4 +59,13 @@ test('renders new schedule modal', () => {
   const createButton = getByText(/criar/i);
 
   expect(createButton).toBeInTheDocument();
+});
+
+test('renders update schedule modal', () => {
+  const { getByText } = render(<Schedule schedulesListData={scheduleData} />, { store });
+
+  fireEvent.click(getByText(/pikachu/i));
+  const updateScheduleModalTitle = getByText(/detalhes do agendamento/i);
+
+  expect(updateScheduleModalTitle).toBeInTheDocument();
 });

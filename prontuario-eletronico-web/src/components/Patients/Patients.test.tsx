@@ -5,7 +5,11 @@ import Patients from './Patients';
 
 const store = createStore(() => ({
   displayPatientDetails: false,
-  patientDetailsData: {'name': 'Pikachu'}
+  patientDetailsData: {'name': 'Pikachu'},
+  displaySchedules: false,
+  newSchedule: false,
+  updateSchedule: false,
+  scheduleDate: ''
 }));
 
 const patientsData = [

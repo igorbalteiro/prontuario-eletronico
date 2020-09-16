@@ -7,7 +7,9 @@ const store = createStore(() => ({
   displayPatientDetails: false,
   patientDetailsData: {'name': 'Pikachu'},
   displaySchedules: false,
-  newSchedule: false
+  newSchedule: false,
+  updateSchedule: false,
+  scheduleDate: ''
 }));
 
 const patientsData = [

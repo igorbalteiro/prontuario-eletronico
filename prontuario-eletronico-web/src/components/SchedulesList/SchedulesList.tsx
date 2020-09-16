@@ -1,8 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './SchedulesList.css';
 
+import {
+  updateSchedule as updateScheduleAction,
+  scheduleDate as scheduleDateAction
+} from '../../actions/index';
+
 const Schedules = ({ schedulesList }) => {
+  const dispatch = useDispatch();
+
+  const selectSchedule = (schedule: any) => {
+    dispatch(scheduleDateAction(schedule.date));
+    dispatch(updateScheduleAction(true));
+  };
+
   return (
     <table className='Schedules-list-table'>
       <thead>
@@ -13,7 +26,7 @@ const Schedules = ({ schedulesList }) => {
       </thead>
       <tbody>
         {schedulesList.map((schedule: any, index: number) => (
-          <tr key={index}>
+          <tr key={index} onClick={() => selectSchedule(schedule)}>
             <td>{schedule.patientName}</td>
             <td>{schedule.date}</td>
           </tr>
