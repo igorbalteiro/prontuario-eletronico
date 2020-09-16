@@ -29,3 +29,13 @@ test('creates an action to displays schedules', () => {
 
   expect(actions.displaySchedules(displaySchedules)).toEqual(expectedAction);
 });
+
+test('creates an action to create a new schedules', () => {
+  const newSchedule = true;
+  const expectedAction = {
+    type: actions.NEW_SCHEDULE,
+    newSchedule
+  };
+
+  expect(actions.newSchedule(newSchedule)).toEqual(expectedAction);
+});

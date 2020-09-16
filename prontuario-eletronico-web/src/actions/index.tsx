@@ -1,6 +1,7 @@
 export const DISPLAY_PATIENT_DETAILS = 'DISPLAY_PATIENT_DETAILS';
 export const PATIENT_DETAILS_DATA = 'PATIENT_DETAILS_DATA';
 export const DISPLAY_SCHEDULES = 'DISPLAY_SCHEDULES';
+export const NEW_SCHEDULE = 'NEW_SCHEDULE';
 
 export const displayPatientDetails = (displayPatientDetails) => ({
   type: DISPLAY_PATIENT_DETAILS,
@@ -15,4 +16,9 @@ export const patientDetailsData = (patientDetailsData) => ({
 export const displaySchedules = (displaySchedules) => ({
   type: DISPLAY_SCHEDULES,
   displaySchedules,
+});
+
+export const newSchedule = (newSchedule) => ({
+  type: NEW_SCHEDULE,
+  newSchedule,
 });

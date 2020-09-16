@@ -6,7 +6,9 @@ import App from './App';
 
 const store = createStore(() => ({
   displayPatientDetails: false,
-  patientDetailsData: {'name': 'Pikachu'}
+  patientDetailsData: {'name': 'Pikachu'},
+  displaySchedules: false,
+  newSchedule: false
 }));
 
 

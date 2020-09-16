@@ -4,7 +4,8 @@ import * as actions from '../actions/index';
 const initialState = {
   displayPatientDetails: false,
   patientDetailsData: {},
-  displaySchedules: false
+  displaySchedules: false,
+  newSchedule: false
 };
 
 test('returns the initial state', () => {
@@ -35,5 +36,14 @@ test('displays schedules', () => {
   expect(rootReducer({}, { type: actions.DISPLAY_SCHEDULES, displaySchedules })).toEqual({
     ...initialState,
     displaySchedules: displaySchedules
+  });
+});
+
+test('displays new schedule modal', () => {
+  const newSchedule = true;
+
+  expect(rootReducer({}, { type: actions.NEW_SCHEDULE, newSchedule })).toEqual({
+    ...initialState,
+    newSchedule: newSchedule
   });
 });

@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import {
   DISPLAY_PATIENT_DETAILS,
   PATIENT_DETAILS_DATA,
-  DISPLAY_SCHEDULES
+  DISPLAY_SCHEDULES,
+  NEW_SCHEDULE
 } from '../actions/index';
 
 export const initialState = {
@@ -38,10 +39,20 @@ const displaySchedules = (state = false, action) => {
   }
 };
 
+const newSchedule = (state = false, action) => {
+  switch (action.type) {
+    case NEW_SCHEDULE:
+      return action.newSchedule
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   displayPatientDetails,
   patientDetailsData,
-  displaySchedules
+  displaySchedules,
+  newSchedule
 });
 
 export default rootReducer;
