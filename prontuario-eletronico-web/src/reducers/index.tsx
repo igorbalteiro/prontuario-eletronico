@@ -5,7 +5,8 @@ import {
   DISPLAY_SCHEDULES,
   NEW_SCHEDULE,
   UPDATE_SCHEDULE,
-  SET_SCHEDULE_DATE
+  SET_SCHEDULE_DATE,
+  DISPLAY_ANNOTATION
 } from '../actions/index';
 
 export const initialState = {
@@ -68,13 +69,23 @@ const scheduleDate = (state = '', action) => {
   }
 };
 
+const displayAnnotation = (state = false, action) => {
+  switch (action.type) {
+    case DISPLAY_ANNOTATION:
+      return action.displayAnnotation
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   displayPatientDetails,
   patientDetailsData,
   displaySchedules,
   newSchedule,
   updateSchedule,
-  scheduleDate
+  scheduleDate,
+  displayAnnotation
 });
 
 export default rootReducer;

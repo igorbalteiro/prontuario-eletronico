@@ -59,3 +59,13 @@ test('creates an action to set a schedule date', () => {
 
   expect(actions.scheduleDate(scheduleDate)).toEqual(expectedAction);
 });
+
+test('creates an action to update a schedule', () => {
+  const displayAnnotation = true;
+  const expectedAction = {
+    type: actions.DISPLAY_ANNOTATION,
+    displayAnnotation
+  };
+
+  expect(actions.displayAnnotation(displayAnnotation)).toEqual(expectedAction);
+});

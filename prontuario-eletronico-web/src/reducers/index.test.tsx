@@ -7,7 +7,8 @@ const initialState = {
   displaySchedules: false,
   newSchedule: false,
   updateSchedule: false,
-  scheduleDate: ''
+  scheduleDate: '',
+  displayAnnotation: false
 };
 
 test('returns the initial state', () => {
@@ -65,5 +66,14 @@ test('sets schedule date', () => {
   expect(rootReducer({}, { type: actions.SET_SCHEDULE_DATE, scheduleDate })).toEqual({
     ...initialState,
     scheduleDate: scheduleDate
+  });
+});
+
+test('displays update schedule modal', () => {
+  const displayAnnotation = true;
+
+  expect(rootReducer({}, { type: actions.DISPLAY_ANNOTATION, displayAnnotation })).toEqual({
+    ...initialState,
+    displayAnnotation: displayAnnotation
   });
 });

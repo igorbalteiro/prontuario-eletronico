@@ -1,6 +1,18 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { createStore } from 'redux';
+import { fireEvent } from '@testing-library/react';
+import { render } from '../../test-utils';
 import Patient from './Patient';
+
+const store = createStore(() => ({
+  displayPatientDetails: false,
+  patientDetailsData: {'name': 'Pikachu'},
+  displaySchedules: false,
+  newSchedule: false,
+  updateSchedule: false,
+  scheduleDate: '',
+  displayAnnotation: false
+}));
 
 const patientsDetailsData = {
   name: 'Pikachu',
@@ -30,7 +42,7 @@ test('renders patient name in section title', () => {
 });
 
 test('renders edit profile button', () => {
-  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />);
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />, { store });
 
   const editProfileButton = getByText(/editar cadastro/i);
 
@@ -38,7 +50,7 @@ test('renders edit profile button', () => {
 });
 
 test('renders remove profile button', () => {
-  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />);
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />, { store });
 
   const removeProfileButton = getByText(/excluir cadastro/i);
 
@@ -46,7 +58,7 @@ test('renders remove profile button', () => {
 });
 
 test('renders patient details data', () => {
-  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />);
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />, { store });
 
   const birthDateText = getByText(/data de nascimento/i);
   const heightText = getByText(/altura/i);
@@ -62,7 +74,7 @@ test('renders patient details data', () => {
 });
 
 test('renders insert annotation button', () => {
-  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />);
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />, { store });
 
   const insertAnnotationButton = getByText(/inserir anotações/i);
 
@@ -70,7 +82,7 @@ test('renders insert annotation button', () => {
 });
 
 test('renders annotations list', () => {
-  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />);
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />, { store });
 
   const annotationText = getByText(/some description/i);
 
@@ -78,9 +90,18 @@ test('renders annotations list', () => {
 });
 
 test('not renders annotations list', () => {
-  const { container } = render(<Patient patientDetails={{ ...patientsDetailsData, annotations: [] }} />);
+  const { container } = render(<Patient patientDetails={{ ...patientsDetailsData, annotations: [] }} />, { store });
 
   const annotationsList = container.querySelector('table');
 
   expect(annotationsList).not.toBeInTheDocument();
+});
+
+test('renders annotation modal when clicking in insert annotations button', () => {
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />, { store });
+
+  fireEvent.click(getByText(/inserir anotações/i));
+  const annotationModalTitle = getByText(/anotações do atendimento/i);
+
+  expect(annotationModalTitle).toBeInTheDocument();
 });

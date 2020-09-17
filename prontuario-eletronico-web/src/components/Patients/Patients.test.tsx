@@ -9,7 +9,8 @@ const store = createStore(() => ({
   displaySchedules: false,
   newSchedule: false,
   updateSchedule: false,
-  scheduleDate: ''
+  scheduleDate: '',
+  displayAnnotation: false
 }));
 
 const patientsData = [
