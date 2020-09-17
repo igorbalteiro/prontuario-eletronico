@@ -5,11 +5,11 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { newSchedule as newScheduleAction } from '../../actions/index';
-import { ReactComponent as CloseIcon } from './close.svg';
-import './ScheduleModal.css';
+import { newSchedule as newScheduleAction } from '../../../actions/index';
+import { ReactComponent as CloseIcon } from '../close.svg';
+import '../ScheduleModal.css';
 
-const ScheduleModal = ({ patientsList }) => {
+const NewScheduleModal = ({ patientsList }) => {
   registerLocale('pt', pt);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
@@ -55,8 +55,8 @@ const ScheduleModal = ({ patientsList }) => {
   );
 }
 
-ScheduleModal.propTypes = {
+NewScheduleModal.propTypes = {
   patientsList: PropTypes.array.isRequired
 }
 
-export default ScheduleModal;
+export default NewScheduleModal;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Schedule.css';
 
 import SchedulesList from '../SchedulesList/SchedulesList';
-import ScheduleModal from '../ScheduleModal/ScheduleModal';
+import NewScheduleModal from '../ScheduleModal/NewSchedule/NewSchedule';
 import UpdateScheduleModal from '../ScheduleModal/UpdateSchedule/UpdateSchedule';
 import { newSchedule as newScheduleAction } from '../../actions/index';
 
@@ -22,7 +22,7 @@ const Schedule = ({ schedulesListData }) => {
 
   const renderNewScheduleModal = () => {
     return (newSchedule)
-      ? <ScheduleModal patientsList={schedulesListData} />
+      ? <NewScheduleModal patientsList={schedulesListData} />
       : null;
   };
 

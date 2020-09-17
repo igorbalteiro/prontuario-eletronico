@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStore } from 'redux';
-import { render } from '../../test-utils';
-import ScheduleModal from './ScheduleModal';
+import { render } from '../../../test-utils';
+import NewScheduleModal from './NewSchedule';
 
 const store = createStore(() => ({
   displayPatientDetails: false,
@@ -18,7 +18,7 @@ const patientsData = [
 ];
 
 test('renders schedule modal title', () => {
-  const { getByText } = render(<ScheduleModal patientsList={patientsData} />, { store });
+  const { getByText } = render(<NewScheduleModal patientsList={patientsData} />, { store });
 
   const scheduleModalTitle = getByText(/novo agendamento/i);
 
@@ -26,7 +26,7 @@ test('renders schedule modal title', () => {
 });
 
 test('renders close icon', () => {
-  const { container } = render(<ScheduleModal patientsList={patientsData} />, { store });
+  const { container } = render(<NewScheduleModal patientsList={patientsData} />, { store });
 
   const closeIcon = container.querySelector('svg');
 
@@ -34,7 +34,7 @@ test('renders close icon', () => {
 });
 
 test('renders cancel new schedule button', () => {
-  const { getByText } = render(<ScheduleModal patientsList={patientsData} />, { store });
+  const { getByText } = render(<NewScheduleModal patientsList={patientsData} />, { store });
 
   const createScheduleButton = getByText(/cancelar/i);
 
@@ -42,7 +42,7 @@ test('renders cancel new schedule button', () => {
 });
 
 test('renders create new schedule button', () => {
-  const { getByText } = render(<ScheduleModal patientsList={patientsData} />, { store });
+  const { getByText } = render(<NewScheduleModal patientsList={patientsData} />, { store });
 
   const createScheduleButton = getByText(/criar/i);
 
@@ -50,7 +50,7 @@ test('renders create new schedule button', () => {
 });
 
 test('renders select patient list', () => {
-  const { getByText } = render(<ScheduleModal patientsList={patientsData} />, { store });
+  const { getByText } = render(<NewScheduleModal patientsList={patientsData} />, { store });
 
   const patientSelect = getByText(/pikachu/i);
 
@@ -58,7 +58,7 @@ test('renders select patient list', () => {
 });
 
 test('renders date picker', () => {
-  const { container } = render(<ScheduleModal patientsList={patientsData} />, { store });
+  const { container } = render(<NewScheduleModal patientsList={patientsData} />, { store });
 
   const datePicker = container.querySelector('input');
 
