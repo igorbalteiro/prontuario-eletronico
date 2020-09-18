@@ -44,8 +44,47 @@ q:before, q:after {
 }
 table {
 	border-collapse: collapse;
-	border-spacing: 0;
+  border-spacing: 0;
+  width: 100%;
+  margin: 5% 0;
+  text-align: left;
 }
+
+th {
+  font-weight: bold;
+  background-color: #34495e;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background:#dfe6e9;
+}
+
+tr:nth-child(odd) {
+  background: #FFF;
+}
+
+tr {
+  cursor: pointer;
+
+  transition: all .2s ease;
+}
+
+tr:hover {
+  background-color: #b2bec3;
+
+  transition: all .2s ease;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+th, td {
+  padding: 1% 0;
+  padding-left: 1%;
+}
+
 
 body {
   font-family: 'Roboto', sans-serif;
