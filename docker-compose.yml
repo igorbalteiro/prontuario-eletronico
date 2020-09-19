@@ -1,0 +1,37 @@
+version: "3.4"
+
+x-common-variables: &common-variables
+  MYSQL_USER: sampleuser
+  MYSQL_PASSWORD: samplepassword
+  MYSQL_DATABASE: prontomed
+  SERVER_PORT: 3001
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: 'database'
+    environment:
+      <<: *common-variables
+      MYSQL_HOST: localhost
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+    volumes:
+      - ./db/sample.sql:/docker-entrypoint-initdb.d/sample.sql
+  server:
+    build: ./prontuario-eletronico-api
+    depends_on:
+      - mysql
+    expose:
+      - 3001
+    environment:
+      <<: *common-variables
+      MYSQL_HOST_IP: 'database'
+    ports:
+      - 3001:3001
+    volumes:
+      - ./prontuario-eletronico-api:/app
+    links:
+      - mysql
+    command: npm start
