@@ -1,15 +1,15 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es2021": true,
-    "mocha": true
+  'env': {
+    'browser': true,
+    'commonjs': true,
+    'es2021': true,
+    'mocha': true
   },
-  "extends": "eslint:recommended",
-  "parserOptions": {
-    "ecmaVersion": 12
+  'extends': 'eslint:recommended',
+  'parserOptions': {
+    'ecmaVersion': 12
   },
-  "rules": {
+  'rules': {
     'semi': 1,
     'indent': [ 'error', 2 ],
     'comma-dangle': [ 'error', {
