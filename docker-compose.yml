@@ -21,6 +21,7 @@ services:
       - ./db/sample.sql:/docker-entrypoint-initdb.d/sample.sql
   server:
     build: ./prontuario-eletronico-api
+    container_name: 'server'
     depends_on:
       - mysql
     expose:
@@ -34,4 +35,20 @@ services:
       - ./prontuario-eletronico-api:/app
     links:
       - mysql
-    command: npm start
+    command: yarn start
+  client:
+    build: ./prontuario-eletronico-web
+    container_name: 'client'
+    environment:
+      <<: *common-variables
+      NODE_PATH: src
+    expose:
+        - 3000
+    ports:
+        - 3000:3000
+    volumes:
+        - ./prontuario-eletronico-web/src:/app/src
+    links:
+        - server
+    command: yarn start
+    
