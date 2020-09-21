@@ -1,116 +1,115 @@
-const Schedule = require('../models/schedule.model.js');
+const db = require('../models');
+const Schedule = db.schedule;
 
-// Create and Save a new Schedule
+// Create and Save a new Patient
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
     res.status(400).send({
       message: 'Body can not be empty!'
     });
+    return;
   }
 
   // Create a Schedule
-  const schedule = new Schedule({
+  const schedule = {
     patientName: req.body.patientName,
     date: req.body.date,
     description: req.body.description,
     patientID: req.body.patientID
-  });
+  };
 
   // Save Schedule in the database
-  Schedule.create(schedule, (err, data) => {
-    if (err) {
+  Schedule.create(schedule)
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
       res.status(500).send({
         message:
           err.message || 'Some error occurred while creating the Schedule.'
       });
-    }
+    });
+};
 
-    res.status(200).send(data);
-  });
+// Retrieve a Schedule from the database.
+exports.findOne = (req, res) => {
+  const id = req.params.scheduleId;
+
+  Schedule.findOne({ id: id })
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || 'Some error occurred while retrieving a schedule.'
+      });
+    });
 };
 
 // Retrieve all Schedules from the database.
 exports.findAll = (req, res) => {
-  Schedule.getAll((err, data) => {
-    if (err) {
+  Schedule.findAll()
+    .then(data => {
+      res.status(200).send(data);
+    })
+    .catch(err => {
       res.status(500).send({
         message:
           err.message || 'Some error occurred while retrieving schedules.'
       });
-    }
-
-    res.status(200).send(data);
-  });
+    });
 };
 
-// Find a single Schedule with a scheduleId
-exports.findOne = (req, res) => {
-  Schedule.findById(req.params.scheduleId, (err, data) => {
-    if (err) {
-      if (err.kind === 'not_found') {
-        res.status(404).send({
-          message: `Not found Schedule with id ${req.params.scheduleId}.`
+// Update a Schedule by the scheduleId in the request
+exports.update = (req, res) => {
+  const id = req.params.scheduleId;
+
+  Schedule.update(req.body, {
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: 'Schedule was updated successfully.'
         });
       } else {
-        res.status(500).send({
-          message: 'Error retrieving Schedule with id ' + req.params.scheduleId
+        res.send({
+          message: `Cannot update Schedule with id=${id}.`
         });
       }
-    }
-
-    res.status(200).send(data);
-  });
-};
-
-// Update a Schedule identified by the scheduleId in the request
-exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body) {
-    res.status(400).send({
-      message: 'Body can not be empty!'
+    })
+    // eslint-disable-next-line no-unused-vars
+    .catch(err => {
+      res.status(500).send({
+        message: `Error updating Schedule with id=${id}.`
+      });
     });
-  }
-
-  console.log(req.body);
-
-  Schedule.update(
-    req.params.scheduleId,
-    new Schedule(req.body),
-    (err, data) => {
-      if (err) {
-        if (err.kind === 'not_found') {
-          res.status(404).send({
-            message: `Not found Schedule with id ${req.params.scheduleId}.`
-          });
-        } else {
-          res.status(500).send({
-            message: 'Error updating Schedule with id ' + req.params.scheduleId
-          });
-        }
-      }
-
-      res.status(200).send(data);
-    }
-  );
 };
 
 // Delete a Schedule with the specified scheduleId in the request
 exports.delete = (req, res) => {
-  // eslint-disable-next-line no-unused-vars
-  Schedule.remove(req.params.scheduleId, (err, data) => {
-    if (err) {
-      if (err.kind === 'not_found') {
-        res.status(404).send({
-          message: `Not found Schedule with id ${req.params.scheduleId}.`
+  const id = req.params.scheduleId;
+
+  Schedule.destroy({
+    where: { id: id }
+  })
+    .then(num => {
+      if (num == 1) {
+        res.send({
+          message: 'Schedule was deleted successfully!'
         });
       } else {
-        res.status(500).send({
-          message: 'Could not delete Schedule with id ' + req.params.scheduleId
+        res.send({
+          message: `Cannot delete Schedule with id=${id}.`
         });
       }
-    }
-
-    res.status(200).send({ message: 'Schedule was deleted successfully!' });
-  });
+    })
+    // eslint-disable-next-line no-unused-vars
+    .catch(err => {
+      res.status(500).send({
+        message: `Cannot delete Schedule with id=${id}.`
+      });
+    });
 };
