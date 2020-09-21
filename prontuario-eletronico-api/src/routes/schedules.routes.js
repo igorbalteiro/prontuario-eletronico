@@ -1,18 +1,19 @@
-const express = require('express');
-const router = express.Router();
+module.exports = app => {
+  const schedules = require('../controllers/schedules.controller');
 
-const schedules = require('../controllers/schedules.controller');
+  const router = require('express').Router();
 
-// Create a new Schedule
-router.post('/', schedules.create);
+  // Create a new Schedule
+  router.post('/', schedules.create);
 
-// Retrieve all Schedules
-router.get('/', schedules.findAll);
+  // Retrieve all Schedule
+  router.get('/', schedules.findAll);
 
-// Update a Schedule with scheduleId
-router.put('/:scheduleId', schedules.update);
+  // Update a Schedule with scheduleId
+  router.put('/:scheduleId', schedules.update);
 
-// Delete a Schedule with scheduleId
-router.delete('/:scheduleId', schedules.delete);
+  // Delete a Schedule with scheduleId
+  router.delete('/:scheduleId', schedules.delete);
 
-module.exports = router;
+  app.use('/api/v1/schedules', router);
+};
