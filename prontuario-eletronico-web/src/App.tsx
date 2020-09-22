@@ -6,14 +6,14 @@ import Patients from './components/Patients/Patients';
 import Patient from './components/Patient/Patient';
 import Schedule from './components/Schedule/Schedule';
 
-import { getPatients } from './client/index';
+import { getPatients, getSchedules } from './client/index';
 
 import {
   displayPatientDetails as  displayPatientDetailsAction,
   displaySchedules as displaySchedulesAction
 } from './actions/index';
 
-const schedulesData = [
+/* const schedulesData = [
   {
     patientName: 'Person A',
     date: '01/01/2020'
@@ -24,7 +24,7 @@ const schedulesData = [
   }
 ];
 
-/* const patientsData = [
+const patientsData = [
   {
     name: 'Person A',
     gender: 'Male',
@@ -71,6 +71,7 @@ function App() {
   const displaySchedules = useSelector((state) => state.displaySchedules);
 
   const [patientsData, setPatientsData] = useState([]);
+  const [schedulesData, setSchedulesData] = useState([]);
 
   const renderMainContent = () => {
     if (displayPatientDetails) return <Patient patientDetails={patientDetailsData} />
@@ -96,6 +97,14 @@ function App() {
       })
       .catch((error) => {
         setPatientsData([]);
+      });
+
+      getSchedules()
+      .then(({ data }) => {
+        setSchedulesData(data);
+      })
+      .catch((error) => {
+        setSchedulesData([]);
       });
   }, []);
 

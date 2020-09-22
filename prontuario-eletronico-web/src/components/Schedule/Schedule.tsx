@@ -17,7 +17,7 @@ const Schedule = ({ schedulesListData }) => {
   const displaySchedulesList = () => {
     return schedulesListData.length > 0
       ? <SchedulesList schedulesList={schedulesListData} />
-      : null
+      : <p className='Schedule-empty'>Nenhuma consulta agendada</p>
   }
 
   const renderNewScheduleModal = () => {

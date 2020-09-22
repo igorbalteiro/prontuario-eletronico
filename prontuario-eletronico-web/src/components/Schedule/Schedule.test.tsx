@@ -45,6 +45,16 @@ test('renders schedules list', () => {
   expect(patientName).toBeInTheDocument();
 });
 
+test('not renders schedules list', () => {
+  const { container, getByText } = render(<Schedule schedulesListData={[]} />, { store });
+
+  const schedulesList = container.querySelector('table');
+  const noScheduleData = getByText(/nenhuma consulta agendada/i);
+
+  expect(schedulesList).not.toBeInTheDocument();
+  expect(noScheduleData).toBeInTheDocument();
+});
+
 test('not renders patients list', () => {
   const { container } = render(<Schedule schedulesListData={[]} />, { store });
 
