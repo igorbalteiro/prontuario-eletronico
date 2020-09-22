@@ -3,15 +3,9 @@ import { createStore } from 'redux';
 import { render } from '../../../test-utils';
 import NewScheduleModal from './NewSchedule';
 
-const store = createStore(() => ({
-  displayPatientDetails: false,
-  patientDetailsData: {'name': 'Pikachu'},
-  displaySchedules: false,
-  newSchedule: false,
-  updateSchedule: false,
-  scheduleDate: '',
-  displayAnnotation: false
-}));
+import { initialState } from '../../../reducers/index';
+
+const store = createStore(() => (initialState));
 
 const patientsData = [
   { patientName: 'Pikachu'},

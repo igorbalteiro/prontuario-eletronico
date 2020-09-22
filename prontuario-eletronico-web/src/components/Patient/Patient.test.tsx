@@ -4,15 +4,9 @@ import { fireEvent } from '@testing-library/react';
 import { render } from '../../test-utils';
 import Patient from './Patient';
 
-const store = createStore(() => ({
-  displayPatientDetails: false,
-  patientDetailsData: {'name': 'Pikachu'},
-  displaySchedules: false,
-  newSchedule: false,
-  updateSchedule: false,
-  scheduleDate: '',
-  displayAnnotation: false
-}));
+import { initialState } from '../../reducers/index';
+
+const store = createStore(() => (initialState));
 
 const patientsDetailsData = {
   name: 'Pikachu',
