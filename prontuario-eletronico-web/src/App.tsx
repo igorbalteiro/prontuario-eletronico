@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 
 import Patients from './components/Patients/Patients';
 import Patient from './components/Patient/Patient';
 import Schedule from './components/Schedule/Schedule';
+
+import { getPatients } from './client/index';
 
 import {
   displayPatientDetails as  displayPatientDetailsAction,
@@ -22,7 +24,7 @@ const schedulesData = [
   }
 ];
 
-const patientsData = [
+/* const patientsData = [
   {
     name: 'Person A',
     gender: 'Male',
@@ -59,7 +61,7 @@ const patientsData = [
       }
     ]
   }
-];
+]; */
 
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +69,8 @@ function App() {
   const displayPatientDetails = useSelector((state) => state.displayPatientDetails);
   const patientDetailsData = useSelector((state) => state.patientDetailsData);
   const displaySchedules = useSelector((state) => state.displaySchedules);
+
+  const [patientsData, setPatientsData] = useState([]);
 
   const renderMainContent = () => {
     if (displayPatientDetails) return <Patient patientDetails={patientDetailsData} />
@@ -84,6 +88,16 @@ function App() {
     dispatch(displayPatientDetailsAction(false));
     dispatch(displaySchedulesAction(true));
   };
+
+  useEffect(() => {
+    getPatients()
+      .then(({ data }) => {
+        setPatientsData(data);
+      })
+      .catch((error) => {
+        setPatientsData([]);
+      });
+  }, []);
 
   return (
     <main className='App'>

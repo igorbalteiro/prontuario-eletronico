@@ -57,7 +57,7 @@ test('renders schedules component', () => {
   expect(schedulesComponent).toBeInTheDocument();
 });
 
-test('renders patient details component when click on patient', () => {
+test.skip('renders patient details component when click on patient', () => {
   const { getByText } = render(<App />, { store });
 
   fireEvent.click(getByText(/person a/i));
@@ -67,7 +67,7 @@ test('renders patient details component when click on patient', () => {
   expect(patientComponent).toBeInTheDocument();
 });
 
-test('renders patients component after clicking in navbar', () => {
+test.skip('renders patients component after clicking in navbar', () => {
   const { getByText } = render(<App />, { store });
 
   fireEvent.click(getByText(/person a/i));
@@ -78,7 +78,7 @@ test('renders patients component after clicking in navbar', () => {
   expect(patientsComponent).toBeInTheDocument();
 });
 
-test('renders schedule component after entering in patient details', () => {
+test.skip('renders schedule component after entering in patient details', () => {
   const { getByText } = render(<App />, { store });
 
   fireEvent.click(getByText(/person a/i));

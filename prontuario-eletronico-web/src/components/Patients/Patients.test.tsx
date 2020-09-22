@@ -59,9 +59,11 @@ test('renders patients list', () => {
 });
 
 test('not renders patients list', () => {
-  const { container } = render(<Patients patientsListData={[]} />);
+  const { container, getByText } = render(<Patients patientsListData={[]} />);
 
   const partientsList = container.querySelector('table');
+  const noPatientData = getByText(/nenhum paciente cadastrado/i);
 
   expect(partientsList).not.toBeInTheDocument();
+  expect(noPatientData).toBeInTheDocument();
 });

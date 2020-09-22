@@ -90,11 +90,13 @@ test('renders annotations list', () => {
 });
 
 test('not renders annotations list', () => {
-  const { container } = render(<Patient patientDetails={{ ...patientsDetailsData, annotations: [] }} />, { store });
+  const { container, getByText } = render(<Patient patientDetails={{ ...patientsDetailsData, annotations: [] }} />, { store });
 
   const annotationsList = container.querySelector('table');
+  const noPatientData = getByText(/nenhuma consulta efetuada/i);
 
   expect(annotationsList).not.toBeInTheDocument();
+  expect(noPatientData).toBeInTheDocument();
 });
 
 test('renders annotation modal when clicking in insert annotations button', () => {

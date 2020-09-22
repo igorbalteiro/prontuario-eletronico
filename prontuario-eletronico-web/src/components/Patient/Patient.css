@@ -72,3 +72,11 @@ button:first-child {
 
   transition: all .2s ease;
 }
+
+.Patient-empty {
+  font-size: 2rem;
+  font-weight: lighter;
+  text-align: center;
+  margin-top: 10%;
+  letter-spacing: 1px;
+}

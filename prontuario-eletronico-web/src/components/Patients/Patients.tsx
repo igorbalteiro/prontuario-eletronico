@@ -8,7 +8,7 @@ const Patients = ({ patientsListData }) => {
   const displayPatientsList = () => {
     return patientsListData.length > 0
       ? <PatientsList patientsList={patientsListData} />
-      : null
+      : <p className='Patients-empty'>Nenhum paciente cadastrado</p>
   }
 
   return (
