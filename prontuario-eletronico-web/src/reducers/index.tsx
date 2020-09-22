@@ -6,13 +6,19 @@ import {
   NEW_SCHEDULE,
   UPDATE_SCHEDULE,
   SET_SCHEDULE_DATE,
-  DISPLAY_ANNOTATION
+  DISPLAY_ANNOTATION,
+  UPDATE_DATA
 } from '../actions/index';
 
 export const initialState = {
   displayPatientDetails: false,
   patientDetailsData: {},
-  displaySchedules: false
+  displaySchedules: false,
+  newSchedule: false,
+  updateSchedule: false,
+  scheduleDate: '',
+  displayAnnotation: false,
+  updateData: false
 };
 
 const displayPatientDetails = (state = false, action) => {
@@ -78,6 +84,15 @@ const displayAnnotation = (state = false, action) => {
   }
 };
 
+const updateData = (state = false, action) => {
+  switch (action.type) {
+    case UPDATE_DATA:
+      return action.updateData
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   displayPatientDetails,
   patientDetailsData,
@@ -85,7 +100,8 @@ const rootReducer = combineReducers({
   newSchedule,
   updateSchedule,
   scheduleDate,
-  displayAnnotation
+  displayAnnotation,
+  updateData
 });
 
 export default rootReducer;
