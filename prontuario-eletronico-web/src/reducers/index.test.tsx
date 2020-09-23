@@ -9,7 +9,8 @@ const initialState = {
   updateSchedule: false,
   scheduleDate: '',
   displayAnnotation: false,
-  updateData: false
+  updateData: false,
+  scheduleData: []
 };
 
 test('returns the initial state', () => {
@@ -85,5 +86,14 @@ test('updates data', () => {
   expect(rootReducer({}, { type: actions.UPDATE_DATA, updateData })).toEqual({
     ...initialState,
     updateData: updateData
+  });
+});
+
+test.skip('sets schedule data', () => {
+  const scheduleData = [{ name: 'Pikachu' }];
+
+  expect(rootReducer({}, { type: actions.SCHEDULE_DATA, scheduleData })).toEqual({
+    ...initialState,
+    updateData: scheduleData
   });
 });

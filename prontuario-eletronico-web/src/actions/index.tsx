@@ -6,6 +6,7 @@ export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
 export const SET_SCHEDULE_DATE = 'SET_SCHEDULE_DATE';
 export const DISPLAY_ANNOTATION = 'DISPLAY_ANNOTATION';
 export const UPDATE_DATA = 'UPDATE_DATA';
+export const SCHEDULE_DATA = 'SCHEDULE_DATA';
 
 export const displayPatientDetails = (displayPatientDetails) => ({
   type: DISPLAY_PATIENT_DETAILS,
@@ -45,4 +46,9 @@ export const displayAnnotation = (displayAnnotation) => ({
 export const updateData = (updateData) => ({
   type: UPDATE_DATA,
   updateData,
+});
+
+export const scheduleData = (scheduleData) => ({
+  type: SCHEDULE_DATA,
+  scheduleData,
 });

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { flatten } from 'ramda';
 import {
   DISPLAY_PATIENT_DETAILS,
   PATIENT_DETAILS_DATA,
@@ -7,7 +8,8 @@ import {
   UPDATE_SCHEDULE,
   SET_SCHEDULE_DATE,
   DISPLAY_ANNOTATION,
-  UPDATE_DATA
+  UPDATE_DATA,
+  SCHEDULE_DATA
 } from '../actions/index';
 
 export const initialState = {
@@ -18,7 +20,8 @@ export const initialState = {
   updateSchedule: false,
   scheduleDate: '',
   displayAnnotation: false,
-  updateData: false
+  updateData: false,
+  scheduleData: []
 };
 
 const displayPatientDetails = (state = false, action) => {
@@ -93,6 +96,15 @@ const updateData = (state = false, action) => {
   }
 };
 
+const scheduleData = (state = [], action) => {
+  switch (action.type) {
+    case SCHEDULE_DATA:
+      return flatten([...state, action.scheduleData])
+    default:
+      return state
+  }
+};
+
 const rootReducer = combineReducers({
   displayPatientDetails,
   patientDetailsData,
@@ -101,7 +113,8 @@ const rootReducer = combineReducers({
   updateSchedule,
   scheduleDate,
   displayAnnotation,
-  updateData
+  updateData,
+  scheduleData
 });
 
 export default rootReducer;

@@ -10,3 +10,12 @@ export const getPatients = async () => {
 export const getSchedules = async () => {
   return await axios.get(`${BASE_URL}/schedules`);
 };
+
+export const createSchedule = async (scheduleData: any) => {
+  return await axios.post(`${BASE_URL}/schedules`, {
+    'patientName': scheduleData.patientName,
+    'date': scheduleData.date,
+    'description': scheduleData.description,
+    'patientID': scheduleData.patientID
+  });
+};
