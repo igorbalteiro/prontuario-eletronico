@@ -8,8 +8,8 @@ import { initialState } from '../../../reducers/index';
 const store = createStore(() => (initialState));
 
 const patientsData = [
-  { patientName: 'Pikachu'},
-  { patientName: 'Raichu'}
+  { name: 'Pikachu'},
+  { name: 'Raichu'}
 ];
 
 test('renders schedule modal title', () => {

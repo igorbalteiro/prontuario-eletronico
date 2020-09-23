@@ -10,7 +10,9 @@ import { getPatients, getSchedules } from './client/index';
 
 import {
   displayPatientDetails as  displayPatientDetailsAction,
-  displaySchedules as displaySchedulesAction
+  displaySchedules as displaySchedulesAction,
+  updateData as updateDataAction,
+  scheduleData as scheduleDataAction
 } from './actions/index';
 
 /* const schedulesData = [
@@ -69,13 +71,15 @@ function App() {
   const displayPatientDetails = useSelector((state) => state.displayPatientDetails);
   const patientDetailsData = useSelector((state) => state.patientDetailsData);
   const displaySchedules = useSelector((state) => state.displaySchedules);
+  const updateData = useSelector((state) => state.updateData);
+  const scheduleData = useSelector((state) => state.scheduleData);
 
   const [patientsData, setPatientsData] = useState([]);
-  const [schedulesData, setSchedulesData] = useState([]);
+  // const [schedulesData, setSchedulesData] = useState([]);
 
   const renderMainContent = () => {
     if (displayPatientDetails) return <Patient patientDetails={patientDetailsData} />
-    if (displaySchedules) return <Schedule schedulesListData={schedulesData} />
+    if (displaySchedules) return <Schedule schedulesListData={scheduleData} patientsListData={patientsData} />
 
     return <Patients patientsListData={patientsData} />
   };
@@ -101,12 +105,32 @@ function App() {
 
       getSchedules()
       .then(({ data }) => {
+        dispatch(scheduleDataAction(data));
+        // setSchedulesData(data);
+      })
+      .catch((error) => {
+        dispatch(scheduleDataAction([]));
+      });
+  }, []);
+
+  /* useEffect(() => {
+    getPatients()
+      .then(({ data }) => {
+        setPatientsData(data);
+      })
+      .catch((error) => {
+        setPatientsData([]);
+      });
+
+      getSchedules()
+      .then(({ data }) => {
         setSchedulesData(data);
       })
       .catch((error) => {
         setSchedulesData([]);
       });
-  }, []);
+      dispatch(updateDataAction(false));
+  }, [updateData]); */
 
   return (
     <main className='App'>

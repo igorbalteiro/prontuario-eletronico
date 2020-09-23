@@ -79,3 +79,13 @@ test('creates an action to update data', () => {
 
   expect(actions.updateData(updateData)).toEqual(expectedAction);
 });
+
+test('creates an action to sets schedule data', () => {
+  const scheduleData = [];
+  const expectedAction = {
+    type: actions.SCHEDULE_DATA,
+    scheduleData
+  };
+
+  expect(actions.scheduleData(scheduleData)).toEqual(expectedAction);
+});

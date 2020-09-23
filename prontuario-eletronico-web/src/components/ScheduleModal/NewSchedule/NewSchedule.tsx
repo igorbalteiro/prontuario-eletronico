@@ -3,11 +3,18 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
+import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { newSchedule as newScheduleAction } from '../../../actions/index';
+import {
+  newSchedule as newScheduleAction,
+  updateData as updateDataAction,
+  scheduleData as scheduleDataAction
+} from '../../../actions/index';
 import { ReactComponent as CloseIcon } from '../close.svg';
 import '../ScheduleModal.css';
+
+import { createSchedule as createScheduleClient } from '../../../client/index';
 
 const NewScheduleModal = ({ patientsList }) => {
   registerLocale('pt', pt);
@@ -15,6 +22,28 @@ const NewScheduleModal = ({ patientsList }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const closeConfirmationModal = () => {
+    dispatch(newScheduleAction(false));
+  };
+
+  const createSchedule = async () => {
+    const date = startDate.toISOString().slice(0,10).split('-');
+
+    const data = {
+      patientName: patientsList[0].name,
+      patientID: patientsList[0].id,
+      date: `${date[2]}/${date[1]}/${date[0]}`,
+      description: ''
+    };
+
+    createScheduleClient(data)
+      .then(({data}) => {
+        dispatch(scheduleDataAction(data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    dispatch(updateDataAction(true));
     dispatch(newScheduleAction(false));
   };
 
@@ -29,7 +58,7 @@ const NewScheduleModal = ({ patientsList }) => {
             <select name='patients' id='patients'>
               {
                 patientsList.map((patient: any, index: number) => {
-                  return <option value={patient.patientName} key={index}>{patient.patientName}</option>;
+                  return <option value={patient.name} key={index}>{patient.name}</option>;
                 })
               }
             </select>
@@ -48,7 +77,7 @@ const NewScheduleModal = ({ patientsList }) => {
         </div>
         <div className='modal-buttons'>
           <button onClick={() => closeConfirmationModal()}>Cancelar</button>
-          <button onClick={() => closeConfirmationModal()}>Criar</button>
+          <button onClick={() => createSchedule()}>Criar</button>
         </div>
       </aside>
     </div>

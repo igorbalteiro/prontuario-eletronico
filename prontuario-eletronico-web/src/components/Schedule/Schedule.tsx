@@ -8,7 +8,7 @@ import NewScheduleModal from '../ScheduleModal/NewSchedule/NewSchedule';
 import UpdateScheduleModal from '../ScheduleModal/UpdateSchedule/UpdateSchedule';
 import { newSchedule as newScheduleAction } from '../../actions/index';
 
-const Schedule = ({ schedulesListData }) => {
+const Schedule = ({ schedulesListData, patientsListData }) => {
   const dispatch = useDispatch();
   const newSchedule = useSelector((state) => state.newSchedule);
   const updateSchedule = useSelector((state) => state.updateSchedule);
@@ -22,7 +22,7 @@ const Schedule = ({ schedulesListData }) => {
 
   const renderNewScheduleModal = () => {
     return (newSchedule)
-      ? <NewScheduleModal patientsList={schedulesListData} />
+      ? <NewScheduleModal patientsList={patientsListData} />
       : null;
   };
 
@@ -46,7 +46,8 @@ const Schedule = ({ schedulesListData }) => {
 }
 
 Schedule.propTypes = {
-  schedulesListData: PropTypes.array.isRequired
+  schedulesListData: PropTypes.array.isRequired,
+  patientsListData: PropTypes.array.isRequired,
 }
 
 export default Schedule;

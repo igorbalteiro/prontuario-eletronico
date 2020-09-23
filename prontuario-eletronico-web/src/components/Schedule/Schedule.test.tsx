@@ -15,8 +15,29 @@ const scheduleData = [
   }
 ];
 
+const patientsData = [
+  {
+    name: 'Pikachu',
+    gender: 'no gender',
+    birthDate: 'unknown birthdate',
+    telephone: 'no telephone',
+    height: 1.68,
+    weight: 90,
+    annotations: [
+      {
+        date: '01/01/2020',
+        description: 'Some description'
+      },
+      {
+        date: '11/01/2020',
+        description: 'Other description'
+      }
+    ]
+  }
+];
+
 test('renders schedule section title', () => {
-  const { getByText } = render(<Schedule schedulesListData={scheduleData} />, { store });
+  const { getByText } = render(<Schedule schedulesListData={scheduleData} patientsListData={patientsData} />, { store });
 
   const scheduleTitle = getByText(/agendamentos/i);
 
@@ -24,7 +45,7 @@ test('renders schedule section title', () => {
 });
 
 test('renders add schedule button', () => {
-  const { getByText } = render(<Schedule schedulesListData={scheduleData} />, { store });
+  const { getByText } = render(<Schedule schedulesListData={scheduleData} patientsListData={patientsData} />, { store });
 
   const scheduleButton = getByText(/novo agendamento/i);
 
@@ -32,7 +53,7 @@ test('renders add schedule button', () => {
 });
 
 test('renders schedules list', () => {
-  const { getByText } = render(<Schedule schedulesListData={scheduleData} />, { store });
+  const { getByText } = render(<Schedule schedulesListData={scheduleData} patientsListData={patientsData} />, { store });
 
   const patientName = getByText(/Pikachu/i);
 
@@ -40,7 +61,7 @@ test('renders schedules list', () => {
 });
 
 test('not renders schedules list', () => {
-  const { container, getByText } = render(<Schedule schedulesListData={[]} />, { store });
+  const { container, getByText } = render(<Schedule schedulesListData={[]} patientsListData={patientsData} />, { store });
 
   const schedulesList = container.querySelector('table');
   const noScheduleData = getByText(/nenhuma consulta agendada/i);
@@ -50,7 +71,7 @@ test('not renders schedules list', () => {
 });
 
 test('not renders patients list', () => {
-  const { container } = render(<Schedule schedulesListData={[]} />, { store });
+  const { container } = render(<Schedule schedulesListData={[]} patientsListData={patientsData} />, { store });
 
   const patientsList = container.querySelector('table');
 
@@ -58,7 +79,7 @@ test('not renders patients list', () => {
 });
 
 test('renders new schedule modal', () => {
-  const { getByText } = render(<Schedule schedulesListData={scheduleData} />, { store });
+  const { getByText } = render(<Schedule schedulesListData={scheduleData} patientsListData={patientsData} />, { store });
 
   fireEvent.click(getByText(/novo agendamento/i));
   const createButton = getByText(/criar/i);
@@ -67,7 +88,7 @@ test('renders new schedule modal', () => {
 });
 
 test('renders update schedule modal', () => {
-  const { getByText } = render(<Schedule schedulesListData={scheduleData} />, { store });
+  const { getByText } = render(<Schedule schedulesListData={scheduleData} patientsListData={patientsData} />, { store });
 
   fireEvent.click(getByText(/pikachu/i));
   const updateScheduleModalTitle = getByText(/detalhes do agendamento/i);
