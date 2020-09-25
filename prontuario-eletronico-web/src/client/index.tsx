@@ -6,6 +6,9 @@ const BASE_URL = `http://localhost:${PORT}/api/v1`;
 export const getPatients = async () => {
   return await axios.get(`${BASE_URL}/patients`);
 };
+export const deletePatient = async (patientID) => {
+  return await axios.delete(`${BASE_URL}/patients/${patientID}`);
+};
 
 export const getSchedules = async () => {
   return await axios.get(`${BASE_URL}/schedules`);

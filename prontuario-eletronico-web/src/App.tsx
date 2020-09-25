@@ -23,10 +23,10 @@ function App() {
 
   const patientsData = useSelector((state) => state.patientsData);
   const schedulesData = useSelector((state) => state.schedulesData);
-  const patientDetailsData = useSelector((state) => state.patientDetailsData);
+  const selectedPatient = useSelector((state) => state.selectedPatient);
 
   const renderMainContent = () => {
-    if (displayPatientDetails) return <Patient patientDetails={patientDetailsData} />
+    if (displayPatientDetails) return <Patient patientDetails={selectedPatient} />
     if (displaySchedules) return <Schedule schedulesListData={schedulesData} patientsListData={patientsData} />
 
     return <Patients patientsListData={patientsData} />

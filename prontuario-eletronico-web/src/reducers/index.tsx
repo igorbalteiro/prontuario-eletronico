@@ -13,7 +13,8 @@ import {
   UPDATE_SCHEDULE_MODAL,
   DELETE_SCHEDULE_MODAL,
   DELETE_SCHEDULE,
-  UPDATE_SCHEDULE
+  UPDATE_SCHEDULE,
+  DELETE_PATIENT
 } from '../actions/index';
 
 export const initialState = {
@@ -33,7 +34,9 @@ export const initialState = {
 const patientsData = (state = [], action) => {
   switch (action.type) {
     case PATIENTS_DATA:
-      return action.patientsData
+      return flatten([...state, action.patientsData])
+    case DELETE_PATIENT:
+      return state.filter(item => not(whereEq(item, action.deletePatient)))
     default:
       return state
   }

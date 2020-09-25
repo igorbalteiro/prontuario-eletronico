@@ -3,7 +3,8 @@ import {
   getPatients,
   getSchedules,
   deleteSchedule,
-  updateSchedule
+  updateSchedule,
+  deletePatient
 } from './index';
 
 jest.mock('axios');
@@ -58,6 +59,30 @@ describe('Retrive patient and schedule client', () => {
         );
 
         await expect(getPatients()).rejects.toThrow(errorMessage);
+      });
+    });
+
+    describe('deletePatient function', () => {
+      it('should return correct message and argument', async () => {
+        mockedAxios.delete.mockImplementationOnce(() => Promise.resolve({
+          message: 'Patient was deleted successfully!'
+        }));
+
+        await expect(deletePatient('1')).resolves.toEqual({
+          message: 'Patient was deleted successfully!'
+        });
+        expect(axios.delete).toHaveBeenCalledTimes(1);
+        expect(axios.delete).toHaveBeenCalledWith('http://localhost:3001/api/v1/patients/1');
+      });
+
+      it('should return empty array when no data is found', async () => {
+        const errorMessage = 'Network Error';
+
+        mockedAxios.delete.mockImplementationOnce(() =>
+          Promise.reject(new Error(errorMessage)),
+        );
+
+        await expect(deletePatient('1')).rejects.toThrow(errorMessage);
       });
     });
   });

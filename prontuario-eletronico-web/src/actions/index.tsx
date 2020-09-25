@@ -13,6 +13,10 @@ export const CREATE_SCHEDULE = 'CREATE_SCHEDULE';
 export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
 export const DELETE_SCHEDULE = 'DELETE_SCHEDULE';
 
+export const CREATE_PATIENT = 'CREATE_PATIENT';
+export const UPDATE_PATIENT = 'UPDATE_PATIENT';
+export const DELETE_PATIENT = 'DELETE_PATIENT';
+
 export const CREATE_SCHEDULE_MODAL = 'CREATE_SCHEDULE_MODAL';
 export const UPDATE_SCHEDULE_MODAL = 'UPDATE_SCHEDULE_MODAL';
 export const DELETE_SCHEDULE_MODAL = 'DELETE_SCHEDULE_MODAL';
@@ -87,4 +91,19 @@ export const updateScheduleModal = (updateScheduleModal) => ({
 export const deleteScheduleModal = (deleteScheduleModal) => ({
   type: DELETE_SCHEDULE_MODAL,
   deleteScheduleModal,
+});
+
+export const updatePatient = (updatePatient) => ({
+  type: UPDATE_PATIENT,
+  updatePatient,
+});
+
+export const deletePatient = (deletePatient) => ({
+  type: DELETE_PATIENT,
+  deletePatient,
+});
+
+export const createPatient = (createPatient) => ({
+  type: CREATE_PATIENT,
+  createPatient,
 });

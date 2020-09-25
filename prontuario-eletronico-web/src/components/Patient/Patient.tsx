@@ -5,7 +5,12 @@ import './Patient.css';
 
 import AnnotationList from '../AnnotationList/AnnotationList';
 import Annotation from '../Annotation/Annotation';
-import { displayAnnotation as displayAnnotationAction } from '../../actions/index';
+import {
+  displayAnnotation as displayAnnotationAction,
+  displayPatientDetails as  displayPatientDetailsAction,
+  deletePatient as deletePatientAction
+} from '../../actions/index';
+import { deletePatient as deletePatientClient } from '../../client';
 
 const Patient = ({ patientDetails }) => {
   const dispatch = useDispatch();
@@ -23,13 +28,22 @@ const Patient = ({ patientDetails }) => {
       : null;
   };
 
+  const deletePatient = () => {
+    console.log(patientDetails)
+    deletePatientClient(patientDetails.id).then((resp) => {
+      dispatch(deletePatientAction(patientDetails));
+      dispatch(displayPatientDetailsAction(false));
+      window.location.reload();
+    });
+  };
+
   return (
     <section className='Patient'>
       <div className='Patient-header'>
         <h3 className='Patient-header-title'>Paciente {patientDetails.name}</h3>
         <div className='Patient-header-buttons'>
           <button>Editar cadastro</button>
-          <button>Excluir cadastro</button>
+          <button onClick={() => deletePatient()}>Excluir cadastro</button>
         </div>
       </div>
       <article className='Patient-data'>
