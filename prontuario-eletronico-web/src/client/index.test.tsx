@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getPatients, getSchedules } from './index';
+import { getPatients, getSchedules, deleteSchedule } from './index';
 
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -75,6 +75,30 @@ describe('Retrive patient and schedule client', () => {
         );
 
         await expect(getSchedules()).rejects.toThrow(errorMessage);
+      });
+    });
+
+    describe('deleteSchedule function', () => {
+      it('should return correct message and argument', async () => {
+        mockedAxios.delete.mockImplementationOnce(() => Promise.resolve({
+          message: 'Schedule was deleted successfully!'
+        }));
+
+        await expect(deleteSchedule('1')).resolves.toEqual({
+          message: 'Schedule was deleted successfully!'
+        });
+        expect(axios.delete).toHaveBeenCalledTimes(1);
+        expect(axios.delete).toHaveBeenCalledWith('http://localhost:3001/api/v1/schedules/1');
+      });
+
+      it('should return empty array when no data is found', async () => {
+        const errorMessage = 'Network Error';
+
+        mockedAxios.delete.mockImplementationOnce(() =>
+          Promise.reject(new Error(errorMessage)),
+        );
+
+        await expect(deleteSchedule('1')).rejects.toThrow(errorMessage);
       });
     });
   });

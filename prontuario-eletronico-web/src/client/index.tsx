@@ -19,3 +19,7 @@ export const createSchedule = async (scheduleData: any) => {
     'patientID': scheduleData.patientID
   });
 };
+
+export const deleteSchedule = async (scheduleID) => {
+  return await axios.delete(`${BASE_URL}/schedules/${scheduleID}`);
+};
