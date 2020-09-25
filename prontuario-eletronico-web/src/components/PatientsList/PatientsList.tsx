@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import './PatientsList.css';
 import {
   displayPatientDetails as  displayPatientDetailsAction,
-  patientDetailsData
+  selectedPatient as selectedPatientAction
 } from '../../actions/index';
 
 const PatientsList = ({ patientsList }) => {
   const dispatch = useDispatch();
 
   const displayPatientDetails = (patientData) => {
-    dispatch(patientDetailsData(patientData));
+    dispatch(selectedPatientAction(patientData));
     dispatch(displayPatientDetailsAction(true));
   };
 

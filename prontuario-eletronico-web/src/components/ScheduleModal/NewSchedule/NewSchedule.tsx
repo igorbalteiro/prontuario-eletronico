@@ -7,9 +7,8 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
-  newSchedule as newScheduleAction,
-  updateData as updateDataAction,
-  scheduleData as scheduleDataAction
+  createScheduleModal as createScheduleModalAction,
+  schedulesData as schedulesDataAction
 } from '../../../actions/index';
 import { ReactComponent as CloseIcon } from '../close.svg';
 import '../ScheduleModal.css';
@@ -22,7 +21,7 @@ const NewScheduleModal = ({ patientsList }) => {
   const [startDate, setStartDate] = useState(new Date());
 
   const closeConfirmationModal = () => {
-    dispatch(newScheduleAction(false));
+    dispatch(createScheduleModalAction(false));
   };
 
   const createSchedule = async () => {
@@ -37,14 +36,13 @@ const NewScheduleModal = ({ patientsList }) => {
 
     createScheduleClient(data)
       .then(({data}) => {
-        dispatch(scheduleDataAction(data));
+        dispatch(schedulesDataAction(data));
       })
       .catch((error) => {
         console.log(error);
       });
 
-    dispatch(updateDataAction(true));
-    dispatch(newScheduleAction(false));
+    dispatch(createScheduleModalAction(false));
   };
 
   return (

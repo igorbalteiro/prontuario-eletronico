@@ -11,75 +11,23 @@ import { getPatients, getSchedules } from './client/index';
 import {
   displayPatientDetails as  displayPatientDetailsAction,
   displaySchedules as displaySchedulesAction,
-  updateData as updateDataAction,
-  scheduleData as scheduleDataAction
+  patientsData as patientsDataAction,
+  schedulesData as schedulesDataAction
 } from './actions/index';
-
-/* const schedulesData = [
-  {
-    patientName: 'Person A',
-    date: '01/01/2020'
-  },
-  {
-    patientName: 'Person B',
-    date: '10/02/2020'
-  }
-];
-
-const patientsData = [
-  {
-    name: 'Person A',
-    gender: 'Male',
-    birthDate: '01/01/1970',
-    telephone: '(21) XXXXX-XXXX',
-    height: 1.68,
-    weight: 90,
-    annotations: [
-      {
-        date: '01/01/2020',
-        description: 'Some description'
-      },
-      {
-        date: '11/01/2020',
-        description: 'Other description'
-      }
-    ]
-  },
-  {
-    name: 'Person B',
-    gender: 'Female',
-    birthDate: '01/01/1960',
-    telephone: '(11) XXXXX-XXXX',
-    height: 1.88,
-    weight: 80,
-    annotations: [
-      {
-        date: '01/01/2020',
-        description: 'Some description 1'
-      },
-      {
-        date: '11/01/2020',
-        description: 'Other description 1'
-      }
-    ]
-  }
-]; */
 
 function App() {
   const dispatch = useDispatch();
 
   const displayPatientDetails = useSelector((state) => state.displayPatientDetails);
-  const patientDetailsData = useSelector((state) => state.patientDetailsData);
   const displaySchedules = useSelector((state) => state.displaySchedules);
-  const updateData = useSelector((state) => state.updateData);
-  const scheduleData = useSelector((state) => state.scheduleData);
 
-  const [patientsData, setPatientsData] = useState([]);
-  // const [schedulesData, setSchedulesData] = useState([]);
+  const patientsData = useSelector((state) => state.patientsData);
+  const schedulesData = useSelector((state) => state.schedulesData);
+  const patientDetailsData = useSelector((state) => state.patientDetailsData);
 
   const renderMainContent = () => {
     if (displayPatientDetails) return <Patient patientDetails={patientDetailsData} />
-    if (displaySchedules) return <Schedule schedulesListData={scheduleData} patientsListData={patientsData} />
+    if (displaySchedules) return <Schedule schedulesListData={schedulesData} patientsListData={patientsData} />
 
     return <Patients patientsListData={patientsData} />
   };
@@ -97,40 +45,14 @@ function App() {
   useEffect(() => {
     getPatients()
       .then(({ data }) => {
-        setPatientsData(data);
-      })
-      .catch((error) => {
-        setPatientsData([]);
+        dispatch(patientsDataAction(data));
       });
 
       getSchedules()
       .then(({ data }) => {
-        dispatch(scheduleDataAction(data));
-        // setSchedulesData(data);
-      })
-      .catch((error) => {
-        dispatch(scheduleDataAction([]));
+        dispatch(schedulesDataAction(data));
       });
   }, []);
-
-  /* useEffect(() => {
-    getPatients()
-      .then(({ data }) => {
-        setPatientsData(data);
-      })
-      .catch((error) => {
-        setPatientsData([]);
-      });
-
-      getSchedules()
-      .then(({ data }) => {
-        setSchedulesData(data);
-      })
-      .catch((error) => {
-        setSchedulesData([]);
-      });
-      dispatch(updateDataAction(false));
-  }, [updateData]); */
 
   return (
     <main className='App'>

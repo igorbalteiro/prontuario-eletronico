@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './SchedulesList.css';
 
 import {
-  updateSchedule as updateScheduleAction,
+  updateScheduleModal as updateScheduleModalAction,
   selectedSchedule as selectedScheduleAction
 } from '../../actions/index';
 
@@ -13,7 +13,7 @@ const Schedules = ({ schedulesList }) => {
 
   const selectSchedule = (schedule: any) => {
     dispatch(selectedScheduleAction(schedule));
-    dispatch(updateScheduleAction(true));
+    dispatch(updateScheduleModalAction(true));
   };
 
   return (

@@ -6,7 +6,7 @@ import pt from 'date-fns/locale/pt';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
-  updateSchedule as updateScheduleAction,
+  updateScheduleModal as updateScheduleModalAction,
   deleteSchedule as deleteScheduleAction
 } from '../../../actions/index';
 import { ReactComponent as CloseIcon } from '../close.svg';
@@ -22,13 +22,13 @@ const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
   const [startDate, setStartDate] = useState(new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]));
 
   const closeConfirmationModal = () => {
-    dispatch(updateScheduleAction(false));
+    dispatch(updateScheduleModalAction(false));
   };
 
   const deleteSchedule = async () => {
     deleteScheduleClient(scheduleData.id).then((resp) => {
       dispatch(deleteScheduleAction(scheduleData));
-      dispatch(updateScheduleAction(false));
+      dispatch(updateScheduleModalAction(false));
     })
   };
 
