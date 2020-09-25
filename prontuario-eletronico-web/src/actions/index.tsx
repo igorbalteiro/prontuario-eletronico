@@ -1,22 +1,36 @@
+export const PATIENTS_DATA = 'PATIENTS_DATA';
+export const SCHEDULES_DATA = 'SCHEDULES_DATA';
+
 export const DISPLAY_PATIENT_DETAILS = 'DISPLAY_PATIENT_DETAILS';
-export const PATIENT_DETAILS_DATA = 'PATIENT_DETAILS_DATA';
 export const DISPLAY_SCHEDULES = 'DISPLAY_SCHEDULES';
-export const NEW_SCHEDULE = 'NEW_SCHEDULE';
-export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
-export const SELECTED_SCHEDULE = 'SELECTED_SCHEDULE';
 export const DISPLAY_ANNOTATION = 'DISPLAY_ANNOTATION';
-export const UPDATE_DATA = 'UPDATE_DATA';
-export const SCHEDULE_DATA = 'SCHEDULE_DATA';
+
+export const SELECTED_PATIENT = 'SELECTED_PATIENT';
+export const SELECTED_SCHEDULE = 'SELECTED_SCHEDULE';
+export const SELECTED_ANNOTATION = 'SELECTED_ANNOTATION';
+
+export const CREATE_SCHEDULE = 'CREATE_SCHEDULE';
+export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
 export const DELETE_SCHEDULE = 'DELETE_SCHEDULE';
+
+export const CREATE_SCHEDULE_MODAL = 'CREATE_SCHEDULE_MODAL';
+export const UPDATE_SCHEDULE_MODAL = 'UPDATE_SCHEDULE_MODAL';
+export const DELETE_SCHEDULE_MODAL = 'DELETE_SCHEDULE_MODAL';
+
+export const patientsData = (patientsData) => ({
+  type: PATIENTS_DATA,
+  patientsData,
+});
+
+export const schedulesData = (schedulesData) => ({
+  type: SCHEDULES_DATA,
+  schedulesData,
+});
+
 
 export const displayPatientDetails = (displayPatientDetails) => ({
   type: DISPLAY_PATIENT_DETAILS,
   displayPatientDetails,
-});
-
-export const patientDetailsData = (patientDetailsData) => ({
-  type: PATIENT_DETAILS_DATA,
-  patientDetailsData,
 });
 
 export const displaySchedules = (displaySchedules) => ({
@@ -24,14 +38,15 @@ export const displaySchedules = (displaySchedules) => ({
   displaySchedules,
 });
 
-export const newSchedule = (newSchedule) => ({
-  type: NEW_SCHEDULE,
-  newSchedule,
+export const displayAnnotation = (displayAnnotation) => ({
+  type: DISPLAY_ANNOTATION,
+  displayAnnotation,
 });
 
-export const updateSchedule = (updateSchedule) => ({
-  type: UPDATE_SCHEDULE,
-  updateSchedule,
+
+export const selectedPatient = (selectedPatient) => ({
+  type: SELECTED_PATIENT,
+  selectedPatient,
 });
 
 export const selectedSchedule = (selectedSchedule) => ({
@@ -39,22 +54,37 @@ export const selectedSchedule = (selectedSchedule) => ({
   selectedSchedule,
 });
 
-export const displayAnnotation = (displayAnnotation) => ({
-  type: DISPLAY_ANNOTATION,
-  displayAnnotation,
+export const selectedAnnotation = (selectedAnnotation) => ({
+  type: SELECTED_ANNOTATION,
+  selectedAnnotation,
 });
 
-export const updateData = (updateData) => ({
-  type: UPDATE_DATA,
-  updateData,
+export const createSchedule = (createSchedule) => ({
+  type: CREATE_SCHEDULE,
+  createSchedule,
 });
 
-export const scheduleData = (scheduleData) => ({
-  type: SCHEDULE_DATA,
-  scheduleData,
+export const updateSchedule = (updateSchedule) => ({
+  type: UPDATE_SCHEDULE,
+  updateSchedule,
 });
 
-export const deleteSchedule = (schedule) => ({
+export const deleteSchedule = (deleteSchedule) => ({
   type: DELETE_SCHEDULE,
-  schedule,
+  deleteSchedule,
+});
+
+export const createScheduleModal = (createScheduleModal) => ({
+  type: CREATE_SCHEDULE_MODAL,
+  createScheduleModal,
+});
+
+export const updateScheduleModal = (updateScheduleModal) => ({
+  type: UPDATE_SCHEDULE_MODAL,
+  updateScheduleModal,
+});
+
+export const deleteScheduleModal = (deleteScheduleModal) => ({
+  type: DELETE_SCHEDULE_MODAL,
+  deleteScheduleModal,
 });

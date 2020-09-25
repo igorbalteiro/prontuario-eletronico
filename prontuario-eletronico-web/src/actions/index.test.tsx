@@ -1,5 +1,25 @@
 import * as actions from './index';
 
+test('creates an action to set patients data', () => {
+  const patientsData = [];
+  const expectedAction = {
+    type: actions.PATIENTS_DATA,
+    patientsData
+  };
+
+  expect(actions.patientsData(patientsData)).toEqual(expectedAction);
+});
+
+test('creates an action to set schedules data', () => {
+  const schedulesData = [];
+  const expectedAction = {
+    type: actions.SCHEDULES_DATA,
+    schedulesData
+  };
+
+  expect(actions.schedulesData(schedulesData)).toEqual(expectedAction);
+});
+
 test('creates an action to displays patient details', () => {
   const displayPatientDetails = true;
   const expectedAction = {
@@ -8,16 +28,6 @@ test('creates an action to displays patient details', () => {
   };
 
   expect(actions.displayPatientDetails(displayPatientDetails)).toEqual(expectedAction);
-});
-
-test('creates an action to set patient details data', () => {
-  const patientDetailsData = [];
-  const expectedAction = {
-    type: actions.PATIENT_DETAILS_DATA,
-    patientDetailsData
-  };
-
-  expect(actions.patientDetailsData(patientDetailsData)).toEqual(expectedAction);
 });
 
 test('creates an action to displays schedules', () => {
@@ -30,37 +40,7 @@ test('creates an action to displays schedules', () => {
   expect(actions.displaySchedules(displaySchedules)).toEqual(expectedAction);
 });
 
-test('creates an action to create a new schedule', () => {
-  const newSchedule = true;
-  const expectedAction = {
-    type: actions.NEW_SCHEDULE,
-    newSchedule
-  };
-
-  expect(actions.newSchedule(newSchedule)).toEqual(expectedAction);
-});
-
-test('creates an action to update a schedule', () => {
-  const updateSchedule = true;
-  const expectedAction = {
-    type: actions.UPDATE_SCHEDULE,
-    updateSchedule
-  };
-
-  expect(actions.updateSchedule(updateSchedule)).toEqual(expectedAction);
-});
-
-test('creates an action to select a schedule', () => {
-  const selectedSchedule = {};
-  const expectedAction = {
-    type: actions.SELECTED_SCHEDULE,
-    selectedSchedule
-  };
-
-  expect(actions.selectedSchedule(selectedSchedule)).toEqual(expectedAction);
-});
-
-test('creates an action to update a schedule', () => {
+test('creates an action to displays annotation', () => {
   const displayAnnotation = true;
   const expectedAction = {
     type: actions.DISPLAY_ANNOTATION,
@@ -70,32 +50,92 @@ test('creates an action to update a schedule', () => {
   expect(actions.displayAnnotation(displayAnnotation)).toEqual(expectedAction);
 });
 
-test('creates an action to update data', () => {
-  const updateData = true;
+test('creates an action to set selected patient data', () => {
+  const selectedPatient = [];
   const expectedAction = {
-    type: actions.UPDATE_DATA,
-    updateData
+    type: actions.SELECTED_PATIENT,
+    selectedPatient
   };
 
-  expect(actions.updateData(updateData)).toEqual(expectedAction);
+  expect(actions.selectedPatient(selectedPatient)).toEqual(expectedAction);
 });
 
-test('creates an action to sets schedule data', () => {
-  const scheduleData = [];
+test('creates an action to set selected schedule data', () => {
+  const selectedSchedule = [];
   const expectedAction = {
-    type: actions.SCHEDULE_DATA,
-    scheduleData
+    type: actions.SELECTED_SCHEDULE,
+    selectedSchedule
   };
 
-  expect(actions.scheduleData(scheduleData)).toEqual(expectedAction);
+  expect(actions.selectedSchedule(selectedSchedule)).toEqual(expectedAction);
+});
+
+test('creates an action to set selected annotation data', () => {
+  const selectedAnnotation = [];
+  const expectedAction = {
+    type: actions.SELECTED_ANNOTATION,
+    selectedAnnotation
+  };
+
+  expect(actions.selectedAnnotation(selectedAnnotation)).toEqual(expectedAction);
+});
+
+test('creates an action to create a new schedule', () => {
+  const createSchedule = {};
+  const expectedAction = {
+    type: actions.CREATE_SCHEDULE,
+    createSchedule
+  };
+
+  expect(actions.createSchedule(createSchedule)).toEqual(expectedAction);
+});
+
+test('creates an action to update a schedule', () => {
+  const updateSchedule = {};
+  const expectedAction = {
+    type: actions.UPDATE_SCHEDULE,
+    updateSchedule
+  };
+
+  expect(actions.updateSchedule(updateSchedule)).toEqual(expectedAction);
 });
 
 test('creates an action to delete a schedule', () => {
-  const schedule = {};
+  const deleteSchedule = {};
   const expectedAction = {
     type: actions.DELETE_SCHEDULE,
-    schedule
+    deleteSchedule
   };
 
-  expect(actions.deleteSchedule(schedule)).toEqual(expectedAction);
+  expect(actions.deleteSchedule(deleteSchedule)).toEqual(expectedAction);
+});
+
+test('creates an action to display create schedule modal', () => {
+  const createScheduleModal = true;
+  const expectedAction = {
+    type: actions.CREATE_SCHEDULE_MODAL,
+    createScheduleModal
+  };
+
+  expect(actions.createScheduleModal(createScheduleModal)).toEqual(expectedAction);
+});
+
+test('creates an action to display update schedule modal', () => {
+  const updateScheduleModal = true;
+  const expectedAction = {
+    type: actions.UPDATE_SCHEDULE_MODAL,
+    updateScheduleModal
+  };
+
+  expect(actions.updateScheduleModal(updateScheduleModal)).toEqual(expectedAction);
+});
+
+test('creates an action to display delete schedule modal', () => {
+  const deleteScheduleModal = true;
+  const expectedAction = {
+    type: actions.DELETE_SCHEDULE_MODAL,
+    deleteScheduleModal
+  };
+
+  expect(actions.deleteScheduleModal(deleteScheduleModal)).toEqual(expectedAction);
 });

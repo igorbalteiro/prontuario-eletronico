@@ -2,19 +2,39 @@ import rootReducer from './index';
 import * as actions from '../actions/index';
 
 const initialState = {
+  patientsData: [],
+  schedulesData: [],
   displayPatientDetails: false,
-  patientDetailsData: {},
   displaySchedules: false,
-  newSchedule: false,
-  updateSchedule: false,
-  selectedSchedule: {},
   displayAnnotation: false,
-  updateData: false,
-  scheduleData: []
+  selectedPatient: {},
+  selectedSchedule: {},
+  selectedAnnotation: {},
+  createScheduleModal: false,
+  updateScheduleModal: false,
+  deleteScheduleModal: false
 };
 
 test('returns the initial state', () => {
   expect(rootReducer({}, {})).toEqual(initialState);
+});
+
+test('sets patients data', () => {
+  const patientsData = [{ name: 'Pikachu' }];
+
+  expect(rootReducer({}, { type: actions.PATIENTS_DATA, patientsData })).toEqual({
+    ...initialState,
+    patientsData: patientsData
+  });
+});
+
+test('sets schedules data', () => {
+  const schedulesData = [{ name: 'Pikachu', date: '01/01/1970' }];
+
+  expect(rootReducer({}, { type: actions.SCHEDULES_DATA, schedulesData })).toEqual({
+    ...initialState,
+    schedulesData: schedulesData
+  });
 });
 
 test('displays patient details', () => {
@@ -23,15 +43,6 @@ test('displays patient details', () => {
   expect(rootReducer({}, { type: actions.DISPLAY_PATIENT_DETAILS, displayPatientDetails })).toEqual({
     ...initialState,
     displayPatientDetails: displayPatientDetails
-  });
-});
-
-test('sets patient details data', () => {
-  const patientDetailsData = { 'name': 'Pikachu' };
-
-  expect(rootReducer({}, { type: actions.PATIENT_DETAILS_DATA, patientDetailsData })).toEqual({
-    ...initialState,
-    patientDetailsData: patientDetailsData
   });
 });
 
@@ -44,34 +55,7 @@ test('displays schedules', () => {
   });
 });
 
-test('displays new schedule modal', () => {
-  const newSchedule = true;
-
-  expect(rootReducer({}, { type: actions.NEW_SCHEDULE, newSchedule })).toEqual({
-    ...initialState,
-    newSchedule: newSchedule
-  });
-});
-
-test('displays update schedule modal', () => {
-  const updateSchedule = true;
-
-  expect(rootReducer({}, { type: actions.UPDATE_SCHEDULE, updateSchedule })).toEqual({
-    ...initialState,
-    updateSchedule: updateSchedule
-  });
-});
-
-test('sets selected schedule data', () => {
-  const selectedSchedule = { date: '01/01/1970'};
-
-  expect(rootReducer({}, { type: actions.SELECTED_SCHEDULE, selectedSchedule })).toEqual({
-    ...initialState,
-    selectedSchedule: selectedSchedule
-  });
-});
-
-test('displays update schedule modal', () => {
+test('displays annotation modal', () => {
   const displayAnnotation = true;
 
   expect(rootReducer({}, { type: actions.DISPLAY_ANNOTATION, displayAnnotation })).toEqual({
@@ -80,20 +64,56 @@ test('displays update schedule modal', () => {
   });
 });
 
-test('updates data', () => {
-  const updateData = true;
+test('sets selected patient data', () => {
+  const selectedPatient = { name: 'Pikachu' };
 
-  expect(rootReducer({}, { type: actions.UPDATE_DATA, updateData })).toEqual({
+  expect(rootReducer({}, { type: actions.SELECTED_PATIENT, selectedPatient })).toEqual({
     ...initialState,
-    updateData: updateData
+    selectedPatient: selectedPatient
   });
 });
 
-test.skip('sets schedule data', () => {
-  const scheduleData = [{ name: 'Pikachu' }];
+test('sets selected schedule data', () => {
+  const selectedSchedule = { name: 'Pikachu', date: '01/01/1970' };
 
-  expect(rootReducer({}, { type: actions.SCHEDULE_DATA, scheduleData })).toEqual({
+  expect(rootReducer({}, { type: actions.SELECTED_SCHEDULE, selectedSchedule })).toEqual({
     ...initialState,
-    updateData: scheduleData
+    selectedSchedule: selectedSchedule
+  });
+});
+
+test('sets selected annotation data', () => {
+  const selectedAnnotation = { date: '01/01/1970', description: '' };
+
+  expect(rootReducer({}, { type: actions.SELECTED_ANNOTATION, selectedAnnotation })).toEqual({
+    ...initialState,
+    selectedAnnotation: selectedAnnotation
+  });
+});
+
+test('displays create schedule modal', () => {
+  const createScheduleModal = true;
+
+  expect(rootReducer({}, { type: actions.CREATE_SCHEDULE_MODAL, createScheduleModal })).toEqual({
+    ...initialState,
+    createScheduleModal: createScheduleModal
+  });
+});
+
+test('displays update schedule modal', () => {
+  const updateScheduleModal = true;
+
+  expect(rootReducer({}, { type: actions.UPDATE_SCHEDULE_MODAL, updateScheduleModal })).toEqual({
+    ...initialState,
+    updateScheduleModal: updateScheduleModal
+  });
+});
+
+test('displays delete schedule modal', () => {
+  const deleteScheduleModal = true;
+
+  expect(rootReducer({}, { type: actions.DELETE_SCHEDULE_MODAL, deleteScheduleModal })).toEqual({
+    ...initialState,
+    deleteScheduleModal: deleteScheduleModal
   });
 });

@@ -1,43 +1,58 @@
 import { combineReducers } from 'redux';
 import { flatten, not, whereEq } from 'ramda';
 import {
+  PATIENTS_DATA,
+  SCHEDULES_DATA,
   DISPLAY_PATIENT_DETAILS,
-  PATIENT_DETAILS_DATA,
   DISPLAY_SCHEDULES,
-  NEW_SCHEDULE,
-  UPDATE_SCHEDULE,
-  SELECTED_SCHEDULE,
   DISPLAY_ANNOTATION,
-  UPDATE_DATA,
-  SCHEDULE_DATA,
+  SELECTED_PATIENT,
+  SELECTED_SCHEDULE,
+  SELECTED_ANNOTATION,
+  CREATE_SCHEDULE_MODAL,
+  UPDATE_SCHEDULE_MODAL,
+  DELETE_SCHEDULE_MODAL,
   DELETE_SCHEDULE
 } from '../actions/index';
 
 export const initialState = {
+  patientsData: [],
+  schedulesData: [],
   displayPatientDetails: false,
-  patientDetailsData: {},
   displaySchedules: false,
-  newSchedule: false,
-  updateSchedule: false,
-  selectedSchedule: {},
   displayAnnotation: false,
-  updateData: false,
-  scheduleData: []
+  selectedPatient: {},
+  selectedSchedule: {},
+  selectedAnnotation: {},
+  createScheduleModal: false,
+  updateScheduleModal: false,
+  deleteScheduleModal: false
+};
+
+const patientsData = (state = [], action) => {
+  switch (action.type) {
+    case PATIENTS_DATA:
+      return action.patientsData
+    default:
+      return state
+  }
+};
+
+const schedulesData = (state = [], action) => {
+  switch (action.type) {
+    case SCHEDULES_DATA:
+      return flatten([...state, action.schedulesData])
+    case DELETE_SCHEDULE:
+      return state.filter(item => not(whereEq(item, action.deleteSchedule)))
+    default:
+      return state
+  }
 };
 
 const displayPatientDetails = (state = false, action) => {
   switch (action.type) {
     case DISPLAY_PATIENT_DETAILS:
       return action.displayPatientDetails
-    default:
-      return state
-  }
-};
-
-const patientDetailsData = (state = {}, action) => {
-  switch (action.type) {
-    case PATIENT_DETAILS_DATA:
-      return action.patientDetailsData
     default:
       return state
   }
@@ -52,19 +67,19 @@ const displaySchedules = (state = false, action) => {
   }
 };
 
-const newSchedule = (state = false, action) => {
+const displayAnnotation = (state = false, action) => {
   switch (action.type) {
-    case NEW_SCHEDULE:
-      return action.newSchedule
+    case DISPLAY_ANNOTATION:
+      return action.displayAnnotation
     default:
       return state
   }
 };
 
-const updateSchedule = (state = false, action) => {
+const selectedPatient = (state = {}, action) => {
   switch (action.type) {
-    case UPDATE_SCHEDULE:
-      return action.updateSchedule
+    case SELECTED_PATIENT:
+      return action.selectedPatient
     default:
       return state
   }
@@ -79,45 +94,55 @@ const selectedSchedule = (state = {}, action) => {
   }
 };
 
-const displayAnnotation = (state = false, action) => {
+const selectedAnnotation = (state = {}, action) => {
   switch (action.type) {
-    case DISPLAY_ANNOTATION:
-      return action.displayAnnotation
+    case SELECTED_ANNOTATION:
+      return action.selectedAnnotation
     default:
       return state
   }
 };
 
-const updateData = (state = false, action) => {
+const createScheduleModal = (state = false, action) => {
   switch (action.type) {
-    case UPDATE_DATA:
-      return action.updateData
+    case CREATE_SCHEDULE_MODAL:
+      return action.createScheduleModal
     default:
       return state
   }
 };
 
-const scheduleData = (state = [], action) => {
+const updateScheduleModal = (state = false, action) => {
   switch (action.type) {
-    case SCHEDULE_DATA:
-      return flatten([...state, action.scheduleData])
-    case DELETE_SCHEDULE:
-      return state.filter(item => not(whereEq(item, action.schedule)))
+    case UPDATE_SCHEDULE_MODAL:
+      return action.updateScheduleModal
     default:
       return state
   }
 };
+
+const deleteScheduleModal = (state = false, action) => {
+  switch (action.type) {
+    case DELETE_SCHEDULE_MODAL:
+      return action.deleteScheduleModal
+    default:
+      return state
+  }
+};
+
 
 const rootReducer = combineReducers({
+  patientsData,
+  schedulesData,
   displayPatientDetails,
-  patientDetailsData,
   displaySchedules,
-  newSchedule,
-  updateSchedule,
-  selectedSchedule,
   displayAnnotation,
-  updateData,
-  scheduleData
+  selectedPatient,
+  selectedSchedule,
+  selectedAnnotation,
+  createScheduleModal,
+  updateScheduleModal,
+  deleteScheduleModal
 });
 
 export default rootReducer;
