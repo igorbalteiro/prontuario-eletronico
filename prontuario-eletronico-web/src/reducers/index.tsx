@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
-import { flatten } from 'ramda';
+import { flatten, not, whereEq } from 'ramda';
 import {
   DISPLAY_PATIENT_DETAILS,
   PATIENT_DETAILS_DATA,
   DISPLAY_SCHEDULES,
   NEW_SCHEDULE,
   UPDATE_SCHEDULE,
-  SET_SCHEDULE_DATE,
+  SELECTED_SCHEDULE,
   DISPLAY_ANNOTATION,
   UPDATE_DATA,
-  SCHEDULE_DATA
+  SCHEDULE_DATA,
+  DELETE_SCHEDULE
 } from '../actions/index';
 
 export const initialState = {
@@ -18,7 +19,7 @@ export const initialState = {
   displaySchedules: false,
   newSchedule: false,
   updateSchedule: false,
-  scheduleDate: '',
+  selectedSchedule: {},
   displayAnnotation: false,
   updateData: false,
   scheduleData: []
@@ -69,10 +70,10 @@ const updateSchedule = (state = false, action) => {
   }
 };
 
-const scheduleDate = (state = '', action) => {
+const selectedSchedule = (state = {}, action) => {
   switch (action.type) {
-    case SET_SCHEDULE_DATE:
-      return action.scheduleDate
+    case SELECTED_SCHEDULE:
+      return action.selectedSchedule
     default:
       return state
   }
@@ -100,6 +101,8 @@ const scheduleData = (state = [], action) => {
   switch (action.type) {
     case SCHEDULE_DATA:
       return flatten([...state, action.scheduleData])
+    case DELETE_SCHEDULE:
+      return state.filter(item => not(whereEq(item, action.schedule)))
     default:
       return state
   }
@@ -111,7 +114,7 @@ const rootReducer = combineReducers({
   displaySchedules,
   newSchedule,
   updateSchedule,
-  scheduleDate,
+  selectedSchedule,
   displayAnnotation,
   updateData,
   scheduleData

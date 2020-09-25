@@ -50,14 +50,14 @@ test('creates an action to update a schedule', () => {
   expect(actions.updateSchedule(updateSchedule)).toEqual(expectedAction);
 });
 
-test('creates an action to set a schedule date', () => {
-  const scheduleDate = '01/01/1970';
+test('creates an action to select a schedule', () => {
+  const selectedSchedule = {};
   const expectedAction = {
-    type: actions.SET_SCHEDULE_DATE,
-    scheduleDate
+    type: actions.SELECTED_SCHEDULE,
+    selectedSchedule
   };
 
-  expect(actions.scheduleDate(scheduleDate)).toEqual(expectedAction);
+  expect(actions.selectedSchedule(selectedSchedule)).toEqual(expectedAction);
 });
 
 test('creates an action to update a schedule', () => {
@@ -88,4 +88,14 @@ test('creates an action to sets schedule data', () => {
   };
 
   expect(actions.scheduleData(scheduleData)).toEqual(expectedAction);
+});
+
+test('creates an action to delete a schedule', () => {
+  const schedule = {};
+  const expectedAction = {
+    type: actions.DELETE_SCHEDULE,
+    schedule
+  };
+
+  expect(actions.deleteSchedule(schedule)).toEqual(expectedAction);
 });

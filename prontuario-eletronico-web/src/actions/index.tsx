@@ -3,10 +3,11 @@ export const PATIENT_DETAILS_DATA = 'PATIENT_DETAILS_DATA';
 export const DISPLAY_SCHEDULES = 'DISPLAY_SCHEDULES';
 export const NEW_SCHEDULE = 'NEW_SCHEDULE';
 export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
-export const SET_SCHEDULE_DATE = 'SET_SCHEDULE_DATE';
+export const SELECTED_SCHEDULE = 'SELECTED_SCHEDULE';
 export const DISPLAY_ANNOTATION = 'DISPLAY_ANNOTATION';
 export const UPDATE_DATA = 'UPDATE_DATA';
 export const SCHEDULE_DATA = 'SCHEDULE_DATA';
+export const DELETE_SCHEDULE = 'DELETE_SCHEDULE';
 
 export const displayPatientDetails = (displayPatientDetails) => ({
   type: DISPLAY_PATIENT_DETAILS,
@@ -33,9 +34,9 @@ export const updateSchedule = (updateSchedule) => ({
   updateSchedule,
 });
 
-export const scheduleDate = (scheduleDate) => ({
-  type: SET_SCHEDULE_DATE,
-  scheduleDate,
+export const selectedSchedule = (selectedSchedule) => ({
+  type: SELECTED_SCHEDULE,
+  selectedSchedule,
 });
 
 export const displayAnnotation = (displayAnnotation) => ({
@@ -51,4 +52,9 @@ export const updateData = (updateData) => ({
 export const scheduleData = (scheduleData) => ({
   type: SCHEDULE_DATA,
   scheduleData,
+});
+
+export const deleteSchedule = (schedule) => ({
+  type: DELETE_SCHEDULE,
+  schedule,
 });

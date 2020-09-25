@@ -7,7 +7,7 @@ const initialState = {
   displaySchedules: false,
   newSchedule: false,
   updateSchedule: false,
-  scheduleDate: '',
+  selectedSchedule: {},
   displayAnnotation: false,
   updateData: false,
   scheduleData: []
@@ -62,12 +62,12 @@ test('displays update schedule modal', () => {
   });
 });
 
-test('sets schedule date', () => {
-  const scheduleDate = '01/01/1970';
+test('sets selected schedule data', () => {
+  const selectedSchedule = { date: '01/01/1970'};
 
-  expect(rootReducer({}, { type: actions.SET_SCHEDULE_DATE, scheduleDate })).toEqual({
+  expect(rootReducer({}, { type: actions.SELECTED_SCHEDULE, selectedSchedule })).toEqual({
     ...initialState,
-    scheduleDate: scheduleDate
+    selectedSchedule: selectedSchedule
   });
 });
 
