@@ -12,7 +12,7 @@ const Schedule = ({ schedulesListData, patientsListData }) => {
   const dispatch = useDispatch();
   const newSchedule = useSelector((state) => state.newSchedule);
   const updateSchedule = useSelector((state) => state.updateSchedule);
-  const scheduleDate = useSelector((state) => state.scheduleDate);
+  const selectedSchedule = useSelector((state) => state.selectedSchedule);
 
   const displaySchedulesList = () => {
     return schedulesListData.length > 0
@@ -28,7 +28,7 @@ const Schedule = ({ schedulesListData, patientsListData }) => {
 
   const renderUpdateScheduleModal = () => {
     return (updateSchedule)
-      ? <UpdateScheduleModal patientsList={schedulesListData} scheduleDate={scheduleDate} />
+      ? <UpdateScheduleModal patientsList={schedulesListData} scheduleData={selectedSchedule} />
       : null;
   };
 

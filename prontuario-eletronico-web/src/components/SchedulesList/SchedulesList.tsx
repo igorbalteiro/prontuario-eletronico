@@ -5,14 +5,14 @@ import './SchedulesList.css';
 
 import {
   updateSchedule as updateScheduleAction,
-  scheduleDate as scheduleDateAction
+  selectedSchedule as selectedScheduleAction
 } from '../../actions/index';
 
 const Schedules = ({ schedulesList }) => {
   const dispatch = useDispatch();
 
   const selectSchedule = (schedule: any) => {
-    dispatch(scheduleDateAction(schedule.date));
+    dispatch(selectedScheduleAction(schedule));
     dispatch(updateScheduleAction(true));
   };
 

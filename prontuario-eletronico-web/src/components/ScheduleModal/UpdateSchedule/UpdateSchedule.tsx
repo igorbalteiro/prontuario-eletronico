@@ -5,19 +5,31 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { updateSchedule as updateScheduleAction } from '../../../actions/index';
+import {
+  updateSchedule as updateScheduleAction,
+  deleteSchedule as deleteScheduleAction
+} from '../../../actions/index';
 import { ReactComponent as CloseIcon } from '../close.svg';
 import '../ScheduleModal.css';
 
-const UpdateScheduleModal = ({ patientsList, scheduleDate }) => {
+import { deleteSchedule as deleteScheduleClient } from '../../../client/index';
+
+const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
   registerLocale('pt', pt);
   const dispatch = useDispatch();
 
-  const dateParts = scheduleDate.split('/');
+  const dateParts = scheduleData.date.split('/');
   const [startDate, setStartDate] = useState(new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]));
 
   const closeConfirmationModal = () => {
     dispatch(updateScheduleAction(false));
+  };
+
+  const deleteSchedule = async () => {
+    deleteScheduleClient(scheduleData.id).then((resp) => {
+      dispatch(deleteScheduleAction(scheduleData));
+      dispatch(updateScheduleAction(false));
+    })
   };
 
   return (
@@ -50,7 +62,7 @@ const UpdateScheduleModal = ({ patientsList, scheduleDate }) => {
         </div>
         <div className='modal-buttons'>
           <button onClick={() => closeConfirmationModal()}>Salvar</button>
-          <button onClick={() => closeConfirmationModal()}>Excluir</button>
+          <button onClick={() => deleteSchedule()}>Excluir</button>
         </div>
       </aside>
     </div>
@@ -59,7 +71,7 @@ const UpdateScheduleModal = ({ patientsList, scheduleDate }) => {
 
 UpdateScheduleModal.propTypes = {
   patientsList: PropTypes.array.isRequired,
-  scheduleDate: PropTypes.string.isRequired
+  scheduleData: PropTypes.object.isRequired
 }
 
 export default UpdateScheduleModal;

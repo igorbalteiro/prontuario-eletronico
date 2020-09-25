@@ -12,10 +12,10 @@ const scheduleListData = [
   { patientName: 'Raichu'}
 ];
 
-const date = '31/10/2020';
+const schedule = { id: 1, date: '01/01/1970'};
 
 test('renders schedule modal title', () => {
-  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleDate={date} />, { store });
+  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
 
   const scheduleModalTitle = getByText(/detalhes do agendamento/i);
 
@@ -23,7 +23,7 @@ test('renders schedule modal title', () => {
 });
 
 test('renders close icon', () => {
-  const { container } = render(<UpdateSchedule patientsList={scheduleListData} scheduleDate={date} />, { store });
+  const { container } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
 
   const closeIcon = container.querySelector('svg');
 
@@ -31,7 +31,7 @@ test('renders close icon', () => {
 });
 
 test('renders delete schedule button', () => {
-  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleDate={date} />, { store });
+  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
 
   const createScheduleButton = getByText(/excluir/i);
 
@@ -39,7 +39,7 @@ test('renders delete schedule button', () => {
 });
 
 test('renders save schedule button', () => {
-  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleDate={date} />, { store });
+  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
 
   const createScheduleButton = getByText(/salvar/i);
 
@@ -47,7 +47,7 @@ test('renders save schedule button', () => {
 });
 
 test('renders select patient list', () => {
-  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleDate={date} />, { store });
+  const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
 
   const patientSelect = getByText(/pikachu/i);
 
@@ -55,7 +55,7 @@ test('renders select patient list', () => {
 });
 
 test('renders date picker', () => {
-  const { container } = render(<UpdateSchedule patientsList={scheduleListData} scheduleDate={date} />, { store });
+  const { container } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
 
   const datePicker = container.querySelector('input');
 
@@ -63,9 +63,9 @@ test('renders date picker', () => {
 });
 
 test('renders date picker with correct date', () => {
-  const { container } = render(<UpdateSchedule patientsList={scheduleListData} scheduleDate={date} />, { store });
+  const { container } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
 
   const datePicker = container.querySelector('input');
 
-  expect(datePicker.value).toEqual('31/10/2020');
+  expect(datePicker.value).toEqual('01/01/1970');
 });
