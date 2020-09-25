@@ -20,7 +20,7 @@ CREATE TABLE `schedules` (
   `description` LONGTEXT,
   `patientID` int(255),
   PRIMARY KEY (`id`),
-  CONSTRAINT `FK_PatientID` FOREIGN KEY (`patientID`) REFERENCES patients(`id`)
+  CONSTRAINT `FK_PatientID` FOREIGN KEY (`patientID`) REFERENCES patients(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 COMMIT;

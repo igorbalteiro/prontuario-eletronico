@@ -19,6 +19,7 @@ const NewScheduleModal = ({ patientsList }) => {
   registerLocale('pt', pt);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
+  const [patientName, setPatientName] = useState(patientsList[0].name);
 
   const closeConfirmationModal = () => {
     dispatch(createScheduleModalAction(false));
@@ -28,8 +29,8 @@ const NewScheduleModal = ({ patientsList }) => {
     const date = startDate.toISOString().slice(0,10).split('-');
 
     const data = {
-      patientName: patientsList[0].name,
-      patientID: patientsList[0].id,
+      patientName: patientName,
+      patientID: patientsList.filter((patient: any) => patient.name === patientName)[0]['id'],
       date: `${date[2]}/${date[1]}/${date[0]}`,
       description: ''
     };
@@ -53,7 +54,7 @@ const NewScheduleModal = ({ patientsList }) => {
         <div className='modal-schedule'>
           <div className='modal-schedule-patients'>
             <label htmlFor='patients'>Paciente</label>
-            <select name='patients' id='patients'>
+            <select name='patients' id='patients' onChange={(e) => setPatientName(e.target.value)}>
               {
                 patientsList.map((patient: any, index: number) => {
                   return <option value={patient.name} key={index}>{patient.name}</option>;
