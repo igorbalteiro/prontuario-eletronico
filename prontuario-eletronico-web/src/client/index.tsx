@@ -23,3 +23,12 @@ export const createSchedule = async (scheduleData: any) => {
 export const deleteSchedule = async (scheduleID) => {
   return await axios.delete(`${BASE_URL}/schedules/${scheduleID}`);
 };
+
+export const updateSchedule = async (scheduleData: any) => {
+  return await axios.put(`${BASE_URL}/schedules/${scheduleData.id}`, {
+    'patientName': scheduleData.patientName,
+    'date': scheduleData.date,
+    'description': scheduleData.description,
+    'patientID': scheduleData.patientID
+  });
+};

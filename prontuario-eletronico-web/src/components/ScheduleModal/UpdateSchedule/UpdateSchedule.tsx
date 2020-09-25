@@ -7,12 +7,16 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import {
   updateScheduleModal as updateScheduleModalAction,
-  deleteSchedule as deleteScheduleAction
+  deleteSchedule as deleteScheduleAction,
+  updateSchedule as updateScheduleAction
 } from '../../../actions/index';
 import { ReactComponent as CloseIcon } from '../close.svg';
 import '../ScheduleModal.css';
 
-import { deleteSchedule as deleteScheduleClient } from '../../../client/index';
+import {
+  deleteSchedule as deleteScheduleClient,
+  updateSchedule as updateScheduleClient
+} from '../../../client/index';
 
 const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
   registerLocale('pt', pt);
@@ -23,6 +27,21 @@ const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
 
   const closeConfirmationModal = () => {
     dispatch(updateScheduleModalAction(false));
+  };
+
+  const updateSchedule = () => {
+    const date = startDate.toISOString().slice(0,10).split('-');
+
+    const data = {
+      ...scheduleData,
+      date: `${date[2]}/${date[1]}/${date[0]}`
+    };
+
+    updateScheduleClient(data)
+      .then((resp) => {
+        dispatch(updateScheduleAction(data));
+        dispatch(updateScheduleModalAction(false));
+      });
   };
 
   const deleteSchedule = async () => {
@@ -61,7 +80,7 @@ const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
           </div>
         </div>
         <div className='modal-buttons'>
-          <button onClick={() => closeConfirmationModal()}>Salvar</button>
+          <button onClick={() => updateSchedule()}>Salvar</button>
           <button onClick={() => deleteSchedule()}>Excluir</button>
         </div>
       </aside>

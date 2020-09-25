@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { flatten, not, whereEq } from 'ramda';
+import { flatten, not, whereEq, findIndex, propEq, update } from 'ramda';
 import {
   PATIENTS_DATA,
   SCHEDULES_DATA,
@@ -12,7 +12,8 @@ import {
   CREATE_SCHEDULE_MODAL,
   UPDATE_SCHEDULE_MODAL,
   DELETE_SCHEDULE_MODAL,
-  DELETE_SCHEDULE
+  DELETE_SCHEDULE,
+  UPDATE_SCHEDULE
 } from '../actions/index';
 
 export const initialState = {
@@ -42,6 +43,9 @@ const schedulesData = (state = [], action) => {
   switch (action.type) {
     case SCHEDULES_DATA:
       return flatten([...state, action.schedulesData])
+    case UPDATE_SCHEDULE:
+      const index = findIndex(propEq('id', action.updateSchedule.id))(state)
+      return update(index, action.updateSchedule, state)
     case DELETE_SCHEDULE:
       return state.filter(item => not(whereEq(item, action.deleteSchedule)))
     default:
