@@ -33,6 +33,10 @@ export const updatePatient = async (patientData: any) => {
   });
 };
 
+export const getPatientSchedules = async (patientID) => {
+  return await axios.get(`${BASE_URL}/patients/${patientID}`);
+};
+
 export const getSchedules = async () => {
   return await axios.get(`${BASE_URL}/schedules`);
 };

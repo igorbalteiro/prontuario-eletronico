@@ -20,14 +20,14 @@ const Patient = ({ patientDetails }) => {
   const updatePatientModal = useSelector((state) => state.updatePatientModal);
 
   const displayAnnotationsList = () => {
-    return (patientDetails.annotations && patientDetails.annotations.length > 0)
-      ? <AnnotationList annotationsList={patientDetails.annotations} />
+    return (patientDetails.schedules && patientDetails.schedules.length > 0)
+      ? <AnnotationList annotationsList={patientDetails.schedules} />
       : <p className='Patient-empty'>Nenhuma consulta efetuada</p>
   }
 
   const displayAnnotationModal = () => {
     return (displayAnnotation)
-      ? <Annotation annotationsList={patientDetails.annotations} />
+      ? <Annotation annotationsList={patientDetails.schedules} />
       : null;
   };
 

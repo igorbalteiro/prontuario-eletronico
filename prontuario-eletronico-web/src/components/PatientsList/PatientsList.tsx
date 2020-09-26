@@ -7,12 +7,16 @@ import {
   selectedPatient as selectedPatientAction
 } from '../../actions/index';
 
+import { getPatientSchedules as getPatientSchedulesClient } from '../../client/index';
+
 const PatientsList = ({ patientsList }) => {
   const dispatch = useDispatch();
 
   const displayPatientDetails = (patientData) => {
-    dispatch(selectedPatientAction(patientData));
-    dispatch(displayPatientDetailsAction(true));
+    getPatientSchedulesClient(patientData.id).then((resp) => {
+      dispatch(selectedPatientAction(resp.data));
+      dispatch(displayPatientDetailsAction(true));
+    });
   };
 
   return (

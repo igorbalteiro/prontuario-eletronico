@@ -15,14 +15,20 @@ const patientsDetailsData = {
   telephone: 'no telephone',
   height: 1.68,
   weight: 90,
-  annotations: [
+  schedules: [
     {
-      date: '01/01/2020',
-      description: 'Some description'
+      id: 1,
+      patientName: 'Pikachu',
+      description: 'Some description',
+      date: '26/09/2020',
+      patientID: 1
     },
     {
-      date: '11/01/2020',
-      description: 'Other description'
+      id: 2,
+      patientName: 'Pikachu',
+      description: 'Other description',
+      date: '01/10/2020',
+      patientID: 1
     }
   ]
 };
@@ -84,7 +90,7 @@ test('renders annotations list', () => {
 });
 
 test('not renders annotations list', () => {
-  const { container, getByText } = render(<Patient patientDetails={{ ...patientsDetailsData, annotations: [] }} />, { store });
+  const { container, getByText } = render(<Patient patientDetails={{ ...patientsDetailsData, schedules: [] }} />, { store });
 
   const annotationsList = container.querySelector('table');
   const noPatientData = getByText(/nenhuma consulta efetuada/i);

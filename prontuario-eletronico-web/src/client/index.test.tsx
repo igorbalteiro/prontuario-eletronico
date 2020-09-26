@@ -6,7 +6,8 @@ import {
   updateSchedule,
   deletePatient,
   createPatient,
-  updatePatient
+  updatePatient,
+  getPatientSchedules
 } from './index';
 
 jest.mock('axios');
@@ -22,6 +23,21 @@ const patientsData = {
       "gender": "masculino",
       "height": 173,
       "weight": 80
+    }
+  ]
+};
+
+const patientsSchedulesData = {
+  data: [
+    {
+      "id": 1,
+      "name": "Pikachu",
+      "telephone": "21999999999",
+      "birthDate": "01/01/1970",
+      "gender": "masculino",
+      "height": 173,
+      "weight": 80,
+      "schedules": []
     }
   ]
 };
@@ -61,6 +77,26 @@ describe('Retrive patient and schedule client', () => {
         );
 
         await expect(getPatients()).rejects.toThrow(errorMessage);
+      });
+    });
+
+    describe('getPatientsSchedules function', () => {
+      it('should return correct data and argument', async () => {
+        mockedAxios.get.mockImplementationOnce(() => Promise.resolve(patientsSchedulesData));
+
+        await expect(getPatientSchedules('1')).resolves.toEqual(patientsSchedulesData);
+        expect(axios.get).toHaveBeenCalledTimes(1);
+        expect(axios.get).toHaveBeenCalledWith('http://localhost:3001/api/v1/patients/1');
+      });
+
+      it('should return empty array when no data is found', async () => {
+        const errorMessage = 'Network Error';
+
+        mockedAxios.get.mockImplementationOnce(() =>
+          Promise.reject(new Error(errorMessage)),
+        );
+
+        await expect(getPatientSchedules('1')).rejects.toThrow(errorMessage);
       });
     });
 
