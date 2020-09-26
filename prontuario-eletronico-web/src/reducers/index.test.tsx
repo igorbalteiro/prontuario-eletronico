@@ -12,7 +12,9 @@ const initialState = {
   selectedAnnotation: {},
   createScheduleModal: false,
   updateScheduleModal: false,
-  deleteScheduleModal: false
+  deleteScheduleModal: false,
+  createPatientModal: false,
+  updatePatientModal: false
 };
 
 test('returns the initial state', () => {
@@ -115,5 +117,23 @@ test('displays delete schedule modal', () => {
   expect(rootReducer({}, { type: actions.DELETE_SCHEDULE_MODAL, deleteScheduleModal })).toEqual({
     ...initialState,
     deleteScheduleModal: deleteScheduleModal
+  });
+});
+
+test('displays create patient modal', () => {
+  const createPatientModal = true;
+
+  expect(rootReducer({}, { type: actions.CREATE_PATIENT_MODAL, createPatientModal })).toEqual({
+    ...initialState,
+    createPatientModal: createPatientModal
+  });
+});
+
+test('displays update patient modal', () => {
+  const updatePatientModal = true;
+
+  expect(rootReducer({}, { type: actions.UPDATE_PATIENT_MODAL, updatePatientModal })).toEqual({
+    ...initialState,
+    updatePatientModal: updatePatientModal
   });
 });

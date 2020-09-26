@@ -21,6 +21,10 @@ export const CREATE_SCHEDULE_MODAL = 'CREATE_SCHEDULE_MODAL';
 export const UPDATE_SCHEDULE_MODAL = 'UPDATE_SCHEDULE_MODAL';
 export const DELETE_SCHEDULE_MODAL = 'DELETE_SCHEDULE_MODAL';
 
+export const CREATE_PATIENT_MODAL = 'CREATE_PATIENT_MODAL';
+export const UPDATE_PATIENT_MODAL = 'UPDATE_PATIENT_MODAL';
+export const DELETE_PATIENT_MODAL = 'DELETE_PATIENT_MODAL';
+
 export const patientsData = (patientsData) => ({
   type: PATIENTS_DATA,
   patientsData,
@@ -106,4 +110,19 @@ export const deletePatient = (deletePatient) => ({
 export const createPatient = (createPatient) => ({
   type: CREATE_PATIENT,
   createPatient,
+});
+
+export const createPatientModal = (createPatientModal) => ({
+  type: CREATE_PATIENT_MODAL,
+  createPatientModal,
+});
+
+export const updatePatientModal = (updatePatientModal) => ({
+  type: UPDATE_PATIENT_MODAL,
+  updatePatientModal,
+});
+
+export const deletePatientModal = (deletePatientModal) => ({
+  type: DELETE_PATIENT_MODAL,
+  deletePatientModal,
 });

@@ -169,3 +169,33 @@ test('creates an action to delete a patient', () => {
 
   expect(actions.deletePatient(deletePatient)).toEqual(expectedAction);
 });
+
+test('creates an action to display create patient modal', () => {
+  const createPatientModal = true;
+  const expectedAction = {
+    type: actions.CREATE_PATIENT_MODAL,
+    createPatientModal
+  };
+
+  expect(actions.createPatientModal(createPatientModal)).toEqual(expectedAction);
+});
+
+test('creates an action to display update patient modal', () => {
+  const updatePatientModal = true;
+  const expectedAction = {
+    type: actions.UPDATE_PATIENT_MODAL,
+    updatePatientModal
+  };
+
+  expect(actions.updatePatientModal(updatePatientModal)).toEqual(expectedAction);
+});
+
+test('creates an action to display delete patient modal', () => {
+  const deletePatientModal = true;
+  const expectedAction = {
+    type: actions.DELETE_PATIENT_MODAL,
+    deletePatientModal
+  };
+
+  expect(actions.deletePatientModal(deletePatientModal)).toEqual(expectedAction);
+});

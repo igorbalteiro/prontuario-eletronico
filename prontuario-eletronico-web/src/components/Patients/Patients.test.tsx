@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStore } from 'redux';
+import { fireEvent } from '@testing-library/react';
 import { render } from '../../test-utils';
 import Patients from './Patients';
 
@@ -60,4 +61,13 @@ test('not renders patients list', () => {
 
   expect(partientsList).not.toBeInTheDocument();
   expect(noPatientData).toBeInTheDocument();
+});
+
+test('displays create patient modal when click create button', () => {
+  const { getByText } = render(<Patients patientsListData={patientsData} />);
+
+  fireEvent.click(getByText(/novo paciente/i));
+  const createPatientModal = getByText(/cadastrar paciente/i);
+
+  expect(createPatientModal).toBeInTheDocument();
 });
