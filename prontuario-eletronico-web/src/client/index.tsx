@@ -22,6 +22,17 @@ export const createPatient = async (patientData: any) => {
   });
 };
 
+export const updatePatient = async (patientData: any) => {
+  return await axios.put(`${BASE_URL}/patients/${patientData.id}`, {
+    'name': patientData.name,
+    'birthDate': patientData.birthDate,
+    'telephone': patientData.telephone,
+    'gender': patientData.gender,
+    'height': patientData.height,
+    'weight': patientData.weight
+  });
+};
+
 export const getSchedules = async () => {
   return await axios.get(`${BASE_URL}/schedules`);
 };

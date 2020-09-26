@@ -16,7 +16,8 @@ import {
   UPDATE_SCHEDULE,
   DELETE_PATIENT,
   CREATE_PATIENT_MODAL,
-  UPDATE_PATIENT_MODAL
+  UPDATE_PATIENT_MODAL,
+  UPDATE_PATIENT
 } from '../actions/index';
 
 export const initialState = {
@@ -39,6 +40,9 @@ const patientsData = (state = [], action) => {
   switch (action.type) {
     case PATIENTS_DATA:
       return flatten([...state, action.patientsData])
+    case UPDATE_PATIENT:
+      const index = findIndex(propEq('id', action.updatePatient.id))(state)
+      return update(index, action.updatePatient, state)
     case DELETE_PATIENT:
       return state.filter(item => not(whereEq(item, action.deletePatient)))
     default:

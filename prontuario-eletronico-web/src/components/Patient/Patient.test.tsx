@@ -101,3 +101,12 @@ test('renders annotation modal when clicking in insert annotations button', () =
 
   expect(annotationModalTitle).toBeInTheDocument();
 });
+
+test.skip('renders update patient modal when click on edit button', () => {
+  const { getByText } = render(<Patient patientDetails={patientsDetailsData} />, { store });
+
+  fireEvent.click(getByText(/editar cadastro/i));
+  const updatePatientModal = getByText(/atualizar paciente/i);
+
+  expect(updatePatientModal).toBeInTheDocument();
+});

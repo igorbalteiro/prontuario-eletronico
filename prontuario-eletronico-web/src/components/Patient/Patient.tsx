@@ -8,13 +8,16 @@ import Annotation from '../Annotation/Annotation';
 import {
   displayAnnotation as displayAnnotationAction,
   displayPatientDetails as  displayPatientDetailsAction,
-  deletePatient as deletePatientAction
+  deletePatient as deletePatientAction,
+  updatePatientModal as updatePatientModalAction
 } from '../../actions/index';
 import { deletePatient as deletePatientClient } from '../../client';
+import UpdatePatientModal from '../PatientModal/updatPatient/UpdatePatientModal';
 
 const Patient = ({ patientDetails }) => {
   const dispatch = useDispatch();
   const displayAnnotation = useSelector((state) => state.displayAnnotation);
+  const updatePatientModal = useSelector((state) => state.updatePatientModal);
 
   const displayAnnotationsList = () => {
     return (patientDetails.annotations && patientDetails.annotations.length > 0)
@@ -29,7 +32,6 @@ const Patient = ({ patientDetails }) => {
   };
 
   const deletePatient = () => {
-    console.log(patientDetails)
     deletePatientClient(patientDetails.id).then((resp) => {
       dispatch(deletePatientAction(patientDetails));
       dispatch(displayPatientDetailsAction(false));
@@ -37,12 +39,18 @@ const Patient = ({ patientDetails }) => {
     });
   };
 
+  const displayUpdatePatientModal = () => {
+    return (updatePatientModal)
+      ? <UpdatePatientModal patientData={patientDetails} />
+      : null;
+  };
+
   return (
     <section className='Patient'>
       <div className='Patient-header'>
         <h3 className='Patient-header-title'>Paciente {patientDetails.name}</h3>
         <div className='Patient-header-buttons'>
-          <button>Editar cadastro</button>
+          <button onClick={() => dispatch(updatePatientModalAction(true))}>Editar cadastro</button>
           <button onClick={() => deletePatient()}>Excluir cadastro</button>
         </div>
       </div>
@@ -56,6 +64,7 @@ const Patient = ({ patientDetails }) => {
       <button className='Patient-insert-annotation' onClick={() => dispatch(displayAnnotationAction(true))}>Inserir anotações</button>
       {displayAnnotationsList()}
       {displayAnnotationModal()}
+      {displayUpdatePatientModal()}
     </section>
   );
 }
