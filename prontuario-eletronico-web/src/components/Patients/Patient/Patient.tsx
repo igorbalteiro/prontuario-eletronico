@@ -31,6 +31,12 @@ const Patient = ({ patientDetails }) => {
       : null;
   };
 
+  const displayAnnotationButton = () => {
+    return (patientDetails.schedules.length > 0)
+      ? <button className='Patient-insert-annotation' onClick={() => dispatch(displayAnnotationAction(true))}>Inserir anotações</button>
+      : null;
+  };
+
   const deletePatient = () => {
     deletePatientClient(patientDetails.id).then((resp) => {
       dispatch(deletePatientAction(patientDetails));
@@ -61,7 +67,7 @@ const Patient = ({ patientDetails }) => {
         <p>Peso: {patientDetails.weight} kg</p>
         <p>Telefone: {patientDetails.telephone}</p>
       </article>
-      <button className='Patient-insert-annotation' onClick={() => dispatch(displayAnnotationAction(true))}>Inserir anotações</button>
+      {displayAnnotationButton()}
       {displayAnnotationsList()}
       {displayAnnotationModal()}
       {displayUpdatePatientModal()}
