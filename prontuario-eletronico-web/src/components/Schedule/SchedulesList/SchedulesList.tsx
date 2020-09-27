@@ -6,7 +6,7 @@ import './SchedulesList.css';
 import {
   updateScheduleModal as updateScheduleModalAction,
   selectedSchedule as selectedScheduleAction
-} from '../../actions/index';
+} from '../../../actions/index';
 
 const Schedules = ({ schedulesList }) => {
   const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Patients.css';
 
-import PatientsList from '../PatientsList/PatientsList';
+import PatientsList from './PatientsList/PatientsList';
 import PatientModal from '../PatientModal/PatientModal';
 
 import {

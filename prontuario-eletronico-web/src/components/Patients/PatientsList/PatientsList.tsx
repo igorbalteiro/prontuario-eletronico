@@ -5,9 +5,9 @@ import './PatientsList.css';
 import {
   displayPatientDetails as  displayPatientDetailsAction,
   selectedPatient as selectedPatientAction
-} from '../../actions/index';
+} from '../../../actions/index';
 
-import { getPatientSchedules as getPatientSchedulesClient } from '../../client/index';
+import { getPatientSchedules as getPatientSchedulesClient } from '../../../client/index';
 
 const PatientsList = ({ patientsList }) => {
   const dispatch = useDispatch();

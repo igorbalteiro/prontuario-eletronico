@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import {
   displayAnnotation as displayAnnotationAction,
   updateSchedule as updateScheduleAction
-} from '../../actions/index';
+} from '../../../../actions/index';
 import { ReactComponent as CloseIcon } from './close.svg';
 import './Annotation.css';
 
 import {
   updateSchedule as updateScheduleClient
-} from '../../client/index';
+} from '../../../../client/index';
 
 const NewScheduleModal = ({ annotationsList }) => {
   const dispatch = useDispatch();

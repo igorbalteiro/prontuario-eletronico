@@ -1,10 +1,10 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { fireEvent } from '@testing-library/react';
-import { render } from '../../test-utils';
+import { render } from '../../../test-utils';
 import Patient from './Patient';
 
-import { initialState } from '../../reducers/index';
+import { initialState } from '../../../reducers/index';
 
 const store = createStore(() => (initialState));
 

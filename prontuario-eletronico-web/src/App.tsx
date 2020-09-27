@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 
 import Patients from './components/Patients/Patients';
-import Patient from './components/Patient/Patient';
+import Patient from './components/Patients/Patient/Patient';
 import Schedule from './components/Schedule/Schedule';
 
 import { getPatients, getSchedules } from './client/index';

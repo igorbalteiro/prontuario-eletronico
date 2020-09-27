@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Schedule.css';
 
-import SchedulesList from '../SchedulesList/SchedulesList';
+import SchedulesList from './SchedulesList/SchedulesList';
 import NewScheduleModal from '../ScheduleModal/NewSchedule/NewSchedule';
 import UpdateScheduleModal from '../ScheduleModal/UpdateSchedule/UpdateSchedule';
 import { createScheduleModal as createScheduleModalAction } from '../../actions/index';

@@ -3,16 +3,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Patient.css';
 
-import AnnotationList from '../AnnotationList/AnnotationList';
-import Annotation from '../Annotation/Annotation';
+import AnnotationList from './AnnotationList/AnnotationList';
+import Annotation from './Annotation/Annotation';
 import {
   displayAnnotation as displayAnnotationAction,
   displayPatientDetails as  displayPatientDetailsAction,
   deletePatient as deletePatientAction,
   updatePatientModal as updatePatientModalAction
-} from '../../actions/index';
-import { deletePatient as deletePatientClient } from '../../client';
-import UpdatePatientModal from '../PatientModal/updatPatient/UpdatePatientModal';
+} from '../../../actions/index';
+import { deletePatient as deletePatientClient } from '../../../client';
+import UpdatePatientModal from '../../PatientModal/updatPatient/UpdatePatientModal';
 
 const Patient = ({ patientDetails }) => {
   const dispatch = useDispatch();

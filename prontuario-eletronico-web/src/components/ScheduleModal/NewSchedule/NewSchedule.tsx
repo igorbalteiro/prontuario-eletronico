@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
-import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
