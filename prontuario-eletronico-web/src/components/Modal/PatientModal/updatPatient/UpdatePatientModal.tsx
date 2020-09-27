@@ -4,16 +4,16 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
 import PropTypes from 'prop-types';
 import '../PatientModal.css'
-import { ReactComponent as CloseIcon } from '../close.svg';
+import { ReactComponent as CloseIcon } from '../../close.svg';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
   updatePatientModal as updatePatientModalAction,
   updatePatient as updatePatientAction
-} from '../../../actions/index';
+} from '../../../../actions/index';
 
-import { updatePatient as updatePatientClient } from '../../../client/index';
+import { updatePatient as updatePatientClient } from '../../../../client/index';
 
 const UpdatePatientModal = ({patientData}) => {
   registerLocale('pt', pt);

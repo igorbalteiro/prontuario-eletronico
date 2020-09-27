@@ -1,9 +1,9 @@
 import React from 'react';
 import { createStore } from 'redux';
-import { render } from '../../../test-utils';
+import { render } from '../../../../test-utils';
 import UpdateSchedule from './UpdateSchedule';
 
-import { initialState } from '../../../reducers/index';
+import { initialState } from '../../../../reducers/index';
 
 const store = createStore(() => (initialState));
 

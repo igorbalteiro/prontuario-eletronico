@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import './Schedule.css';
 
 import SchedulesList from './SchedulesList/SchedulesList';
-import NewScheduleModal from '../ScheduleModal/NewSchedule/NewSchedule';
-import UpdateScheduleModal from '../ScheduleModal/UpdateSchedule/UpdateSchedule';
+import NewScheduleModal from '../Modal/ScheduleModal/NewSchedule/NewSchedule';
+import UpdateScheduleModal from '../Modal/ScheduleModal/UpdateSchedule/UpdateSchedule';
 import { createScheduleModal as createScheduleModalAction } from '../../actions/index';
 
 const Schedule = ({ schedulesListData, patientsListData }) => {

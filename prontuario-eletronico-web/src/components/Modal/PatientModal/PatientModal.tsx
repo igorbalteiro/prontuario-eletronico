@@ -3,16 +3,16 @@ import { useDispatch } from 'react-redux';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt';
 import './PatientModal.css'
-import { ReactComponent as CloseIcon } from './close.svg';
+import { ReactComponent as CloseIcon } from '../close.svg';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
   createPatientModal as createPatientModalAction,
   patientsData as patientsDataAction
-} from '../../actions/index';
+} from '../../../actions/index';
 
-import { createPatient as createPatientClient } from '../../client/index';
+import { createPatient as createPatientClient } from '../../../client/index';
 
 const PatientModal = () => {
   registerLocale('pt', pt);

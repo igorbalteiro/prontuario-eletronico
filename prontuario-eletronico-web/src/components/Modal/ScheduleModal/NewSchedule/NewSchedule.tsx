@@ -8,11 +8,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {
   createScheduleModal as createScheduleModalAction,
   schedulesData as schedulesDataAction
-} from '../../../actions/index';
-import { ReactComponent as CloseIcon } from '../close.svg';
+} from '../../../../actions/index';
+import { ReactComponent as CloseIcon } from '../../close.svg';
 import '../ScheduleModal.css';
 
-import { createSchedule as createScheduleClient } from '../../../client/index';
+import { createSchedule as createScheduleClient } from '../../../../client/index';
 
 const NewScheduleModal = ({ patientsList }) => {
   registerLocale('pt', pt);

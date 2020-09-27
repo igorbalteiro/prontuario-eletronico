@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Patients.css';
 
 import PatientsList from './PatientsList/PatientsList';
-import PatientModal from '../PatientModal/PatientModal';
+import PatientModal from '../Modal/PatientModal/PatientModal';
 
 import {
   createPatientModal as createPatientModalAction

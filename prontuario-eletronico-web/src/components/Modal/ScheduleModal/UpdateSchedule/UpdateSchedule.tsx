@@ -9,14 +9,14 @@ import {
   updateScheduleModal as updateScheduleModalAction,
   deleteSchedule as deleteScheduleAction,
   updateSchedule as updateScheduleAction
-} from '../../../actions/index';
-import { ReactComponent as CloseIcon } from '../close.svg';
+} from '../../../../actions/index';
+import { ReactComponent as CloseIcon } from '../../close.svg';
 import '../ScheduleModal.css';
 
 import {
   deleteSchedule as deleteScheduleClient,
   updateSchedule as updateScheduleClient
-} from '../../../client/index';
+} from '../../../../client/index';
 
 const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
   registerLocale('pt', pt);
