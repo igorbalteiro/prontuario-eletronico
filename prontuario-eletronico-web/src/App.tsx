@@ -52,15 +52,15 @@ function App() {
       .then(({ data }) => {
         dispatch(schedulesDataAction(data));
       });
-  }, []);
+  }, [dispatch]);
 
   return (
     <main className='App'>
       <header className='App-header'>
         <h1 className='App-header-title'>PRONTOMED</h1>
         <nav className='App-header-navigation'>
-          <a href='#' onClick={ () => displayPatientContent() }>Pacientes</a>
-          <a href='#' onClick={ () => displayScheduleContent() }>Agendamentos</a>
+          <button onClick={ () => displayPatientContent() }>Pacientes</button>
+          <button onClick={ () => displayScheduleContent() }>Agendamentos</button>
         </nav>
       </header>
       {renderMainContent()}
