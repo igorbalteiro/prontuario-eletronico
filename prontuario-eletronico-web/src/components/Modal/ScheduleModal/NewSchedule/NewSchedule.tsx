@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import DatePicker, { registerLocale } from 'react-datepicker';
-import pt from 'date-fns/locale/pt';
-import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 
 import {
   createScheduleModal as createScheduleModalAction,
@@ -12,10 +10,11 @@ import {
 import { ReactComponent as CloseIcon } from '../../close.svg';
 import '../ScheduleModal.css';
 
+import ScheduleDateSelector from '../ScheduleDateSelector/ScheduleDateSelector';
+
 import { createSchedule as createScheduleClient } from '../../../../client/index';
 
 const NewScheduleModal = ({ patientsList }) => {
-  registerLocale('pt', pt);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
   const [patientName, setPatientName] = useState(patientsList[0].name);
@@ -24,13 +23,15 @@ const NewScheduleModal = ({ patientsList }) => {
     dispatch(createScheduleModalAction(false));
   };
 
-  const createSchedule = async () => {
-    const date = startDate.toISOString().slice(0,10).split('-');
+  const handleChange = (value) => {
+    setStartDate(value);
+  };
 
+  const createSchedule = async () => {
     const data = {
       patientName: patientName,
       patientID: patientsList.filter((patient: any) => patient.name === patientName)[0]['id'],
-      date: `${date[2]}/${date[1]}/${date[0]}`,
+      date: moment(startDate).format('DD/MM/YYYY HH:mm'),
       description: ''
     };
 
@@ -47,7 +48,7 @@ const NewScheduleModal = ({ patientsList }) => {
 
   return (
     <div className='overlay'>
-      <aside className='modal'>
+      <aside className='modal-schedules'>
         <CloseIcon className='modal-close' onClick={() => closeConfirmationModal()} />
         <h3 className='modal-title'>Novo agendamento</h3>
         <div className='modal-schedule'>
@@ -63,14 +64,7 @@ const NewScheduleModal = ({ patientsList }) => {
           </div>
           <div className='modal-schedule-date'>
             <p>Data</p>
-            <DatePicker
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              dateFormat='dd/MM/yyyy'
-              minDate={startDate}
-              locale='pt'
-              className='date-picker'
-            />
+            <ScheduleDateSelector startDate={startDate} minDate={startDate} handleChange={handleChange} />
           </div>
         </div>
         <div className='modal-buttons'>

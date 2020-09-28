@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import DatePicker, { registerLocale } from 'react-datepicker';
-import pt from 'date-fns/locale/pt';
-import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 
 import {
   updateScheduleModal as updateScheduleModalAction,
@@ -13,28 +11,30 @@ import {
 import { ReactComponent as CloseIcon } from '../../close.svg';
 import '../ScheduleModal.css';
 
+import ScheduleDateSelector from '../ScheduleDateSelector/ScheduleDateSelector';
+
 import {
   deleteSchedule as deleteScheduleClient,
   updateSchedule as updateScheduleClient
 } from '../../../../client/index';
 
 const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
-  registerLocale('pt', pt);
   const dispatch = useDispatch();
 
-  const dateParts = scheduleData.date.split('/');
-  const [startDate, setStartDate] = useState(new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]));
+  const [startDate, setStartDate] = useState(moment(scheduleData.date, 'DD/MM/YYYY HH:mm').toDate());
 
   const closeConfirmationModal = () => {
     dispatch(updateScheduleModalAction(false));
   };
 
-  const updateSchedule = () => {
-    const date = startDate.toISOString().slice(0,10).split('-');
+  const handleChange = (value) => {
+    setStartDate(value);
+  };
 
+  const updateSchedule = () => {
     const data = {
       ...scheduleData,
-      date: `${date[2]}/${date[1]}/${date[0]}`
+      date: moment(startDate).format('DD/MM/YYYY HH:mm')
     };
 
     updateScheduleClient(data)
@@ -53,7 +53,7 @@ const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
 
   return (
     <div className='overlay'>
-      <aside className='modal'>
+      <aside className='modal-schedules'>
         <CloseIcon className='modal-close' onClick={() => closeConfirmationModal()} />
         <h3 className='modal-title'>Detalhes do agendamento</h3>
         <div className='modal-schedule'>
@@ -69,14 +69,7 @@ const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
           </div>
           <div className='modal-schedule-date'>
             <p>Data</p>
-            <DatePicker
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              dateFormat='dd/MM/yyyy'
-              minDate={startDate}
-              locale='pt'
-              className='date-picker'
-            />
+            <ScheduleDateSelector startDate={startDate} minDate={new Date()} handleChange={handleChange} />
           </div>
         </div>
         <div className='modal-buttons'>

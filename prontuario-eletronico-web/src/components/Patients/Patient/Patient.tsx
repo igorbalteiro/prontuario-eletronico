@@ -12,7 +12,7 @@ import {
   updatePatientModal as updatePatientModalAction
 } from '../../../actions/index';
 import { deletePatient as deletePatientClient } from '../../../client';
-import UpdatePatientModal from '../../Modal/PatientModal/updatPatient/UpdatePatientModal';
+import UpdatePatientModal from '../../Modal/PatientModal/UpdatPatient/UpdatePatientModal';
 
 const Patient = ({ patientDetails }) => {
   const dispatch = useDispatch();

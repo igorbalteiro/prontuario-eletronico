@@ -16,7 +16,7 @@ CREATE TABLE `patients` (
 CREATE TABLE `schedules` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `patientName` varchar(100) NOT NULL,
-  `date` varchar(13) NOT NULL,
+  `date` varchar(16) NOT NULL,
   `description` LONGTEXT,
   `patientID` int(255),
   PRIMARY KEY (`id`),

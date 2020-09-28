@@ -12,7 +12,7 @@ const scheduleListData = [
   { patientName: 'Raichu'}
 ];
 
-const schedule = { id: 1, date: '01/01/1970'};
+const schedule = { id: 1, date: '01/01/1970 00:00'};
 
 test('renders schedule modal title', () => {
   const { getByText } = render(<UpdateSchedule patientsList={scheduleListData} scheduleData={schedule} />, { store });
@@ -67,5 +67,5 @@ test('renders date picker with correct date', () => {
 
   const datePicker = container.querySelector('input');
 
-  expect(datePicker.value).toEqual('01/01/1970');
+  expect(datePicker.value).toEqual('01/01/1970 00:00');
 });

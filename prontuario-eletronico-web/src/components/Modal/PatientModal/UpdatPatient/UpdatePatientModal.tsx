@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import DatePicker, { registerLocale } from 'react-datepicker';
-import pt from 'date-fns/locale/pt';
 import PropTypes from 'prop-types';
 import '../PatientModal.css'
 import { ReactComponent as CloseIcon } from '../../close.svg';
 
-import 'react-datepicker/dist/react-datepicker.css';
+import DateSelector from '../DateSelector/DateSelector';
 
 import {
   updatePatientModal as updatePatientModalAction,
@@ -16,8 +14,6 @@ import {
 import { updatePatient as updatePatientClient } from '../../../../client/index';
 
 const UpdatePatientModal = ({patientData}) => {
-  registerLocale('pt', pt);
-
   const dispatch = useDispatch();
 
   const dateParts = patientData.birthDate.split('/');
@@ -30,6 +26,10 @@ const UpdatePatientModal = ({patientData}) => {
 
   const closeConfirmationModal = () => {
     dispatch(updatePatientModalAction(false));
+  };
+
+  const handleChange = (value) => {
+    setStartDate(value);
   };
 
   const updatePatient = () => {
@@ -74,15 +74,7 @@ const UpdatePatientModal = ({patientData}) => {
             <option value='outro'>Prefiro não informar</option>
           </select>
           <label htmlFor='birthDate'>Data de nascimento</label>
-          <DatePicker
-            selected={startDate}
-            onChange={date => setStartDate(date)}
-            dateFormat='dd/MM/yyyy'
-            locale='pt'
-            className='date-picker'
-            showYearDropdown
-            dropdownMode='select'
-          />
+          <DateSelector startDate={startDate} handleChange={handleChange} />
         </div>
         <div className='modal-buttons'>
           <button onClick={() => closeConfirmationModal()}>Cancelar</button>

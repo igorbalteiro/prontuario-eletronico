@@ -9,7 +9,7 @@ module.exports = (sequelize, Sequelize) => {
       allowNull: true
     },
     date: {
-      type: Sequelize.STRING(13),
+      type: Sequelize.STRING(16),
       allowNull: false
     },
     patientID: {
