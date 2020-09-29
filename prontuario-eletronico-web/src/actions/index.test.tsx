@@ -70,26 +70,6 @@ test('creates an action to set selected schedule data', () => {
   expect(actions.selectedSchedule(selectedSchedule)).toEqual(expectedAction);
 });
 
-test('creates an action to set selected annotation data', () => {
-  const selectedAnnotation = [];
-  const expectedAction = {
-    type: actions.SELECTED_ANNOTATION,
-    selectedAnnotation
-  };
-
-  expect(actions.selectedAnnotation(selectedAnnotation)).toEqual(expectedAction);
-});
-
-test('creates an action to create a new schedule', () => {
-  const createSchedule = {};
-  const expectedAction = {
-    type: actions.CREATE_SCHEDULE,
-    createSchedule
-  };
-
-  expect(actions.createSchedule(createSchedule)).toEqual(expectedAction);
-});
-
 test('creates an action to update a schedule', () => {
   const updateSchedule = {};
   const expectedAction = {
@@ -128,26 +108,6 @@ test('creates an action to display update schedule modal', () => {
   };
 
   expect(actions.updateScheduleModal(updateScheduleModal)).toEqual(expectedAction);
-});
-
-test('creates an action to display delete schedule modal', () => {
-  const deleteScheduleModal = true;
-  const expectedAction = {
-    type: actions.DELETE_SCHEDULE_MODAL,
-    deleteScheduleModal
-  };
-
-  expect(actions.deleteScheduleModal(deleteScheduleModal)).toEqual(expectedAction);
-});
-
-test('creates an action to create a new patient', () => {
-  const createPatient = {};
-  const expectedAction = {
-    type: actions.CREATE_PATIENT,
-    createPatient
-  };
-
-  expect(actions.createPatient(createPatient)).toEqual(expectedAction);
 });
 
 test('creates an action to update a patient', () => {

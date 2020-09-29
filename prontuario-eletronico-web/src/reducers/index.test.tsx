@@ -9,10 +9,8 @@ const initialState = {
   displayAnnotation: false,
   selectedPatient: {},
   selectedSchedule: {},
-  selectedAnnotation: {},
   createScheduleModal: false,
   updateScheduleModal: false,
-  deleteScheduleModal: false,
   createPatientModal: false,
   updatePatientModal: false
 };
@@ -84,15 +82,6 @@ test('sets selected schedule data', () => {
   });
 });
 
-test('sets selected annotation data', () => {
-  const selectedAnnotation = { date: '01/01/1970', description: '' };
-
-  expect(rootReducer({}, { type: actions.SELECTED_ANNOTATION, selectedAnnotation })).toEqual({
-    ...initialState,
-    selectedAnnotation: selectedAnnotation
-  });
-});
-
 test('displays create schedule modal', () => {
   const createScheduleModal = true;
 
@@ -108,15 +97,6 @@ test('displays update schedule modal', () => {
   expect(rootReducer({}, { type: actions.UPDATE_SCHEDULE_MODAL, updateScheduleModal })).toEqual({
     ...initialState,
     updateScheduleModal: updateScheduleModal
-  });
-});
-
-test('displays delete schedule modal', () => {
-  const deleteScheduleModal = true;
-
-  expect(rootReducer({}, { type: actions.DELETE_SCHEDULE_MODAL, deleteScheduleModal })).toEqual({
-    ...initialState,
-    deleteScheduleModal: deleteScheduleModal
   });
 });
 

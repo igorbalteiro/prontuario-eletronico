@@ -7,19 +7,15 @@ export const DISPLAY_ANNOTATION = 'DISPLAY_ANNOTATION';
 
 export const SELECTED_PATIENT = 'SELECTED_PATIENT';
 export const SELECTED_SCHEDULE = 'SELECTED_SCHEDULE';
-export const SELECTED_ANNOTATION = 'SELECTED_ANNOTATION';
 
-export const CREATE_SCHEDULE = 'CREATE_SCHEDULE';
 export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE';
 export const DELETE_SCHEDULE = 'DELETE_SCHEDULE';
 
-export const CREATE_PATIENT = 'CREATE_PATIENT';
 export const UPDATE_PATIENT = 'UPDATE_PATIENT';
 export const DELETE_PATIENT = 'DELETE_PATIENT';
 
 export const CREATE_SCHEDULE_MODAL = 'CREATE_SCHEDULE_MODAL';
 export const UPDATE_SCHEDULE_MODAL = 'UPDATE_SCHEDULE_MODAL';
-export const DELETE_SCHEDULE_MODAL = 'DELETE_SCHEDULE_MODAL';
 
 export const CREATE_PATIENT_MODAL = 'CREATE_PATIENT_MODAL';
 export const UPDATE_PATIENT_MODAL = 'UPDATE_PATIENT_MODAL';
@@ -62,16 +58,6 @@ export const selectedSchedule = (selectedSchedule) => ({
   selectedSchedule,
 });
 
-export const selectedAnnotation = (selectedAnnotation) => ({
-  type: SELECTED_ANNOTATION,
-  selectedAnnotation,
-});
-
-export const createSchedule = (createSchedule) => ({
-  type: CREATE_SCHEDULE,
-  createSchedule,
-});
-
 export const updateSchedule = (updateSchedule) => ({
   type: UPDATE_SCHEDULE,
   updateSchedule,
@@ -92,11 +78,6 @@ export const updateScheduleModal = (updateScheduleModal) => ({
   updateScheduleModal,
 });
 
-export const deleteScheduleModal = (deleteScheduleModal) => ({
-  type: DELETE_SCHEDULE_MODAL,
-  deleteScheduleModal,
-});
-
 export const updatePatient = (updatePatient) => ({
   type: UPDATE_PATIENT,
   updatePatient,
@@ -105,11 +86,6 @@ export const updatePatient = (updatePatient) => ({
 export const deletePatient = (deletePatient) => ({
   type: DELETE_PATIENT,
   deletePatient,
-});
-
-export const createPatient = (createPatient) => ({
-  type: CREATE_PATIENT,
-  createPatient,
 });
 
 export const createPatientModal = (createPatientModal) => ({

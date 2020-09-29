@@ -8,10 +8,8 @@ import {
   DISPLAY_ANNOTATION,
   SELECTED_PATIENT,
   SELECTED_SCHEDULE,
-  SELECTED_ANNOTATION,
   CREATE_SCHEDULE_MODAL,
   UPDATE_SCHEDULE_MODAL,
-  DELETE_SCHEDULE_MODAL,
   DELETE_SCHEDULE,
   UPDATE_SCHEDULE,
   DELETE_PATIENT,
@@ -28,10 +26,8 @@ export const initialState = {
   displayAnnotation: false,
   selectedPatient: {},
   selectedSchedule: {},
-  selectedAnnotation: {},
   createScheduleModal: false,
   updateScheduleModal: false,
-  deleteScheduleModal: false,
   createPatientModal: false,
   updatePatientModal: false
 };
@@ -109,15 +105,6 @@ const selectedSchedule = (state = {}, action) => {
   }
 };
 
-const selectedAnnotation = (state = {}, action) => {
-  switch (action.type) {
-    case SELECTED_ANNOTATION:
-      return action.selectedAnnotation
-    default:
-      return state
-  }
-};
-
 const createScheduleModal = (state = false, action) => {
   switch (action.type) {
     case CREATE_SCHEDULE_MODAL:
@@ -131,15 +118,6 @@ const updateScheduleModal = (state = false, action) => {
   switch (action.type) {
     case UPDATE_SCHEDULE_MODAL:
       return action.updateScheduleModal
-    default:
-      return state
-  }
-};
-
-const deleteScheduleModal = (state = false, action) => {
-  switch (action.type) {
-    case DELETE_SCHEDULE_MODAL:
-      return action.deleteScheduleModal
     default:
       return state
   }
@@ -173,10 +151,8 @@ const rootReducer = combineReducers({
   displayAnnotation,
   selectedPatient,
   selectedSchedule,
-  selectedAnnotation,
   createScheduleModal,
   updateScheduleModal,
-  deleteScheduleModal,
   createPatientModal,
   updatePatientModal
 });
