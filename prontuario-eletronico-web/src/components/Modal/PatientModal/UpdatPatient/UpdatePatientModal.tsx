@@ -68,10 +68,10 @@ const UpdatePatientModal = ({patientData}) => {
           <label htmlFor='height'>Altura (cm)</label>
           <input type='text' id='height' name='height' onChange={(e) => setHeight(+e.target.value)} value={height} />
           <label htmlFor='gender'>Sexo</label>
-          <select id='gender' onChange={(e) => setGender(e.target.value)}>
-            <option value='masculino'>Masculino</option>
-            <option value='feminino'>Feminino</option>
-            <option value='outro'>Prefiro não informar</option>
+          <select id='gender' value={gender} onChange={(e) => setGender(e.target.value)}>
+            <option value='Masculino'>Masculino</option>
+            <option value='Feminino'>Feminino</option>
+            <option value='Não informado'>Prefiro não informar</option>
           </select>
           <label htmlFor='birthDate'>Data de nascimento</label>
           <DateSelector startDate={startDate} handleChange={handleChange} />
