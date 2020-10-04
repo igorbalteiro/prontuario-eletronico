@@ -41,8 +41,10 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success creating a Patient"
+          },
+          "500": {
+            "description": "Error creating a Patient"
           }
         }
       },
@@ -59,8 +61,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success retrieving Patients"
+          },
+          "500": {
+            "description": "Error retrieving Patients"
           }
         }
       }
@@ -79,8 +83,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success deleting a Patient"
+          },
+          "500": {
+            "description": "Error deleting a Patient"
           }
         }
       },
@@ -107,8 +113,10 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success updating a Patient"
+          },
+          "500": {
+            "description": "Error updating a Patient"
           }
         }
       },
@@ -125,8 +133,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success retrieving Patient schedule"
+          },
+          "500": {
+            "description": "Error retrieving Patient schedule"
           }
         }
       }
@@ -145,8 +155,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success retrieving Schedules"
+          },
+          "500": {
+            "description": "Error retrieving Schedules"
           }
         }
       },
@@ -173,8 +185,10 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success creating a Schedule"
+          },
+          "500": {
+            "description": "Error creating a Schedule"
           }
         }
       }
@@ -193,8 +207,10 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success deleting a Schedule"
+          },
+          "500": {
+            "description": "Error deleting a Schedule"
           }
         }
       },
@@ -221,8 +237,10 @@
         ],
         "responses": {
           "200": {
-            "description": "",
-            "headers": {}
+            "description": "Success updating a Schedule"
+          },
+          "500": {
+            "description": "Error updating a Schedule"
           }
         }
       }
