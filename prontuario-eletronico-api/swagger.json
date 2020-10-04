@@ -1,0 +1,387 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "PRONTOMED",
+    "contact": {}
+  },
+  "host": "localhost:3001",
+  "basePath": "/api/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/patients": {
+      "post": {
+        "summary": "Create a Patient",
+        "tags": [
+          "Patients"
+        ],
+        "operationId": "CreateaPatient",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateaPatientRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Get all patients",
+        "tags": [
+          "Patients"
+        ],
+        "operationId": "Getallpatients",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/patients/1": {
+      "delete": {
+        "summary": "Delete a Patient",
+        "tags": [
+          "Patients"
+        ],
+        "operationId": "DeleteaPatient",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a Patient",
+        "tags": [
+          "Patients"
+        ],
+        "operationId": "UpdateaPatient",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateaPatientRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "summary": "Get schedules for a patient",
+        "tags": [
+          "Patients"
+        ],
+        "operationId": "Getschedulesforapatient",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/schedules": {
+      "get": {
+        "summary": "Get all schedules",
+        "tags": [
+          "Schedules"
+        ],
+        "operationId": "Getallschedules",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a schedule",
+        "tags": [
+          "Schedules"
+        ],
+        "operationId": "Createaschedule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/CreateascheduleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/schedules/1": {
+      "delete": {
+        "summary": "Delete a schedule",
+        "tags": [
+          "Schedules"
+        ],
+        "operationId": "Deleteaschedule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a schedule",
+        "tags": [
+          "Schedules"
+        ],
+        "operationId": "Updateaschedule",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Body",
+            "in": "body",
+            "required": true,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateascheduleRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateaPatientRequest": {
+      "title": "CreateaPatientRequest",
+      "example": {
+        "name": "Pikachu",
+        "birthDate": "01/01/1970",
+        "telephone": "99999999999",
+        "gender": "Masculino",
+        "height": 173,
+        "weight": 80
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "name",
+        "birthDate",
+        "telephone",
+        "gender",
+        "height",
+        "weight"
+      ]
+    },
+    "UpdateaPatientRequest": {
+      "title": "UpdateaPatientRequest",
+      "example": {
+        "name": "Pikachu edit",
+        "birthDate": "01/01/1970",
+        "telephone": "99999999999",
+        "gender": "Masculino",
+        "height": 173,
+        "weight": 80
+      },
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "birthDate": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "height": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "weight": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "name",
+        "birthDate",
+        "telephone",
+        "gender",
+        "height",
+        "weight"
+      ]
+    },
+    "UpdateascheduleRequest": {
+      "title": "UpdateascheduleRequest",
+      "example": {
+        "patientName": "Pikachu",
+        "date": "01/01/2021",
+        "description": "",
+        "patientID": 1
+      },
+      "type": "object",
+      "properties": {
+        "patientName": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "patientID": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "patientName",
+        "date",
+        "description",
+        "patientID"
+      ]
+    },
+    "CreateascheduleRequest": {
+      "title": "CreateascheduleRequest",
+      "example": {
+        "patientName": "Pikachu",
+        "date": "01/01/2020",
+        "description": "",
+        "patientID": 1
+      },
+      "type": "object",
+      "properties": {
+        "patientName": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "patientID": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "required": [
+        "patientName",
+        "date",
+        "description",
+        "patientID"
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "Patients"
+    },
+    {
+      "name": "Schedules"
+    }
+  ]
+}
