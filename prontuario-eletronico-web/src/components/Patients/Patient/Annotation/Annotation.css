@@ -14,7 +14,7 @@
   margin-right: -50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  height: 50%;
+  height: 90%;
   width: 50%;
 
   display: flex;
@@ -53,29 +53,15 @@
 }
 
 .modal-annotation {
-  width: 50%;
-  margin-left: 25%;
-}
-
-.modal-annotation-dates {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 10%;
 }
 
-.modal-annotation-dates label {
+.modal-annotation label {
   font-weight: bold;
-}
-
-.modal-annotation-text p {
-  font-weight: bold;
-}
-
-.modal-annotation-text {
-  margin-top: 5%;
-}
-
-.modal-annotation-text input {
-  width: 100%;
+  margin: 5% 0 2% 0;
 }
 
 .modal-buttons {

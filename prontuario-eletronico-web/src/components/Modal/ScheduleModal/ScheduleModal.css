@@ -14,7 +14,7 @@
   margin-right: -50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  height: 50%;
+  height: 90%;
   width: 50%;
 
   display: flex;
@@ -53,25 +53,15 @@
 }
 
 .modal-schedule {
-  width: 50%;
-  margin-left: 25%;
-}
-
-.modal-schedule-patients, .modal-schedule-date {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 10%;
 }
 
-.modal-schedule-patients label {
+.modal-schedule label {
   font-weight: bold;
-}
-
-.modal-schedule-date p {
-  font-weight: bold;
-}
-
-.modal-schedule-date {
-  margin-top: 5%;
+  margin: 5% 0 2% 0;
 }
 
 .modal-buttons {

@@ -39,7 +39,7 @@ exports.create = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.patientId;
 
-  Patient.findOne({ id: id })
+  Patient.findOne({where: { id: id }})
     .then(data => {
       res.status(200).send(data);
     })
@@ -70,7 +70,7 @@ exports.getSchedules = (req, res) => {
   const id = req.params.patientId;
 
   Patient.findOne({
-    id: id,
+    where: { id: id },
     include: [{
       model: Schedule
     }]

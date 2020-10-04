@@ -8,26 +8,19 @@
   min-height: 100vh;
   width: 25%;
   color: white;
+  text-align: center;
+  letter-spacing: 2px;
 }
 
 .App-header-title {
-  text-align: center;
   font-weight: bolder;
   font-size: 2rem;
-  letter-spacing: 2px;
   margin: 10% 0;
-}
-
-a {
-  text-decoration: none;
-  color: white;
 }
 
 .App-header-navigation {
   display: flex;
   flex-direction: column;
-  text-align: center;
-  letter-spacing: 2px;
   font-size: 1.2rem;
 }
 
@@ -39,4 +32,43 @@ a {
   width: 100%;
   color: white;
   font-size: inherit;
+}
+
+@media only screen and (max-width: 900px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .App-header {
+    min-height: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .App-header-title {
+    margin: 0;
+    width: 50%;
+  }
+
+  .App-header-navigation {
+    width: 50%;
+    flex-direction: row;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .App-header, .App-header-navigation {
+    flex-direction: column;
+  }
+
+  .App-header-title {
+    width: 100%;
+    margin: 2% 0;
+  }
+
+  .App-header-navigation button {
+    padding: 5% 0;
+  }
 }

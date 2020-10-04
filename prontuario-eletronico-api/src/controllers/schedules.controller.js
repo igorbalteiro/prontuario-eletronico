@@ -36,7 +36,7 @@ exports.create = (req, res) => {
 exports.findOne = (req, res) => {
   const id = req.params.scheduleId;
 
-  Schedule.findOne({ id: id })
+  Schedule.findOne({where: { id: id }})
     .then(data => {
       res.status(200).send(data);
     })

@@ -61,11 +61,11 @@ const Patient = ({ patientDetails }) => {
         </div>
       </div>
       <article className='Patient-data'>
-        <p>Data de nascimento: {patientDetails.birthDate}</p>
-        <p>Altura: {patientDetails.height}</p>
-        <p>Sexo: {patientDetails.gender}</p>
-        <p>Peso: {patientDetails.weight} kg</p>
-        <p>Telefone: {patientDetails.telephone}</p>
+        <p><span className='Patient-data-category'>Data de nascimento: </span>{patientDetails.birthDate}</p>
+        <p><span className='Patient-data-category'>Altura: </span>{patientDetails.height}</p>
+        <p><span className='Patient-data-category'>Sexo: </span>{patientDetails.gender}</p>
+        <p><span className='Patient-data-category'>Peso: </span>{patientDetails.weight} kg</p>
+        <p><span className='Patient-data-category'>Telefone: </span>{patientDetails.telephone}</p>
       </article>
       {displayAnnotationButton()}
       {displayAnnotationsList()}

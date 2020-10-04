@@ -59,19 +59,16 @@ const NewScheduleModal = ({ annotationsList }) => {
         <CloseIcon className='modal-close' onClick={() => closeConfirmationModal()} />
         <h3 className='modal-title'>Anotações do Atendimento</h3>
         <div className='modal-annotation'>
-          <div className='modal-annotation-dates'>
-            <label htmlFor='dates'>Data da consulta</label>
-            <select name='dates' id='dates' onChange={(e) => selectedOption(e)}>
-              {
-                annotationsList.map((annotation: any, index: number) => {
-                  return <option value={annotation.date} key={index}>{annotation.date}</option>;
-                })
-              }
-            </select>
-          </div>
-          <div className='modal-annotation-text'>
-            <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-          </div>
+          <label htmlFor='dates'>Data da consulta</label>
+          <select name='dates' id='dates' onChange={(e) => selectedOption(e)}>
+            {
+              annotationsList.map((annotation: any, index: number) => {
+                return <option value={annotation.date} key={index}>{annotation.date}</option>;
+              })
+            }
+          </select>
+          <label htmlFor='dates'>Anotações</label>
+          <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
         </div>
         <div className='modal-buttons'>
           <button onClick={() => closeConfirmationModal()}>Cancelar</button>

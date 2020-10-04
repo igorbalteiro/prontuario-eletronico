@@ -57,20 +57,16 @@ const UpdateScheduleModal = ({ patientsList, scheduleData }) => {
         <CloseIcon className='modal-close' onClick={() => closeConfirmationModal()} />
         <h3 className='modal-title'>Detalhes do agendamento</h3>
         <div className='modal-schedule'>
-          <div className='modal-schedule-patients'>
-            <label htmlFor='patients'>Paciente</label>
-            <select name='patients' id='patients'>
-              {
-                patientsList.map((patient: any, index: number) => {
-                  return <option value={patient.patientName} key={index}>{patient.patientName}</option>;
-                })
-              }
-            </select>
-          </div>
-          <div className='modal-schedule-date'>
-            <p>Data</p>
-            <ScheduleDateSelector startDate={startDate} minDate={new Date()} handleChange={handleChange} />
-          </div>
+          <label htmlFor='patients'>Paciente</label>
+          <select name='patients' id='patients'>
+            {
+              patientsList.map((patient: any, index: number) => {
+                return <option value={patient.patientName} key={index}>{patient.patientName}</option>;
+              })
+            }
+          </select>
+          <label htmlFor='patients'>Data</label>
+          <ScheduleDateSelector startDate={startDate} minDate={new Date()} handleChange={handleChange} />
         </div>
         <div className='modal-buttons'>
           <button onClick={() => updateSchedule()}>Salvar</button>
